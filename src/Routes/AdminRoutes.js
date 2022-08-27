@@ -23,7 +23,7 @@ const AdminRoutes = [
   { path: "/updatepsd", component: <Private><UpdatePassword /></Private> },
   { path: "/profile", component: <Private><Profile /></Private> },
   { path: "/currency/add", component: <Private><AddCurrency /></Private> },
-  { path: "/currency/edit", component: <Private><EditCurrency /></Private> },
+  { path: "/currency/edit/:id", component: <Private><EditCurrency /></Private> },
   { path: "/currPair/add", component: <Private><AddCurrencyPair /></Private> },
   { path: "/currPair/edit", component: <Private><EditCurrencyPair /></Private> },
   { path: "/setting", component: <Private><UpdateSetting /></Private> },

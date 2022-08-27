@@ -12,8 +12,8 @@ const Currency = () => {
     }, [])
 
     // edit
-    function handleEdit() {
-        window.location.href = `/currency/edit`;
+    function handleEdit(id) {
+        window.location.href = `/currency/edit/${id}`;
     }
 
     // user transaction
@@ -46,9 +46,9 @@ const Currency = () => {
                     },
                     { data: "created_at" },
                     {
-                        data: null,
-                        render: function () {
-                            return '<i class="fa-solid fa-pen fa-lg pointer" id="edit-btn"></i>'
+                        data: "id",
+                        render: function (data, type, row) {
+                            return '<a href="/currency/edit/' + data + '"><i class="fa-solid fa-pen fa-lg pointer" id="edit-btn"></i></a>'
                         }
                     },
                 ],
@@ -56,7 +56,10 @@ const Currency = () => {
             });
             // edit
             $("#currency tbody").on("click", "#edit-btn", function () {
-                handleEdit();
+                var row = $(this).parents("tr")[0];
+                const id = table1.row(row).data().id;
+                console.log(id);
+                handleEdit(id);
             });
         };
         return {

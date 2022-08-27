@@ -1,11 +1,13 @@
 import { React, useState } from "react";
 import { AddCurrencyData } from "../../Redux/Action/AdminData";
+import { useNavigate } from "react-router-dom";
 import AdminTheme from "../theme/AdminTheme";
 import Title from "../../common/title";
 import { connect } from "react-redux";
 import { t } from "i18next";
 
 const AddCurrency = ({ dispatch, res }) => {
+  const navigate = useNavigate()
   //store currency data
   const [userData, setUserData] = useState({
     name: "",
@@ -309,13 +311,20 @@ const AddCurrency = ({ dispatch, res }) => {
                 </label>
               </div>
               {/* Add button */}
-              <div className="mb-3">
+              <div className="text-center mt-5">
                 <button
-                  type="submit"
                   className="btn btn-primary"
+                  type="submit"
                   onClick={handleUpdate}
                 >
-                  Add
+                  {t("text_add")}
+                </button>
+                <button
+                  onClick={() => navigate(-1)}
+                  className="btn btn-primary cancel-btn ms-3"
+                  type="button"
+                >
+                  {t("text_cancel")}
                 </button>
               </div>
             </form>

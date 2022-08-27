@@ -1,6 +1,6 @@
 import { React, useEffect } from 'react';
-import Title from '../../common/title';
 import AdminTheme from '../theme/AdminTheme';
+import Title from '../../common/title';
 import { t } from 'i18next';
 
 const WalletUpdate = () => {

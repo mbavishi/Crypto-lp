@@ -15,7 +15,6 @@ const Member = () => {
     // edit
     function handleEdit(id) {
         window.location.href = `/member/view/${id}`
-        // window.location.reload()
         // History(`/member/view/${id}`)
     }
 
@@ -53,9 +52,9 @@ const Member = () => {
                         },
                     },
                     {
-                        data: null,
-                        render: function () {
-                            return '<i class="fa fa-eye fa-lg pointer" id="view-btn"></i>'
+                        data: "user_id",
+                        render: function (data, type, row) {
+                            return '<a href="/member/view/' + data + '"><i class="fa fa-eye fa-lg pointer" id="view-btn"></i><a/>'
                         }
                     },
                 ],

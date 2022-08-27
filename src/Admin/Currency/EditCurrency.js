@@ -1,12 +1,15 @@
 import { React, useState } from "react";
 import { EditCurrencyData } from "../../Redux/Action/AdminData";
+import { useNavigate, useParams } from "react-router-dom";
 import AdminTheme from "../theme/AdminTheme";
 import Title from "../../common/title";
 import { connect } from "react-redux";
 import { t } from "i18next";
 
 const EditCurrency = ({ dispatch, res }) => {
-  const id = 1
+  const params = useParams();
+  const navigate = useNavigate();
+  console.log(params.id);
   //store the data of currency
   const [userData, setUserData] = useState({
     name: "",
@@ -52,35 +55,35 @@ const EditCurrency = ({ dispatch, res }) => {
     let formIsValid = false;
     if (!name) {
       formIsValid = true;
-      formErrors["nameErr"] = "";
+      formErrors["nameErr"] = t("translation2:err_name_req");
     }
     if (!currency_code) {
       formIsValid = true;
-      formErrors["currencyCodeErr"] = "";
+      formErrors["currencyCodeErr"] = t("translation2:err_curr_code_req");
     }
     if (!image) {
       formIsValid = true;
-      formErrors["imageErr"] = "";
+      formErrors["imageErr"] = t("translation2:err_img_req");
     }
     if (!contract_address) {
       formIsValid = true;
-      formErrors["contractAddErr"] = "";
+      formErrors["contractAddErr"] = t("translation2:err_contract_add_req");
     }
     if (!abi_key) {
       formIsValid = true;
-      formErrors["abiKeyErr"] = "";
+      formErrors["abiKeyErr"] = t("translation2:err_abi_key_req");
     }
     if (!decimal_point) {
       formIsValid = true;
-      formErrors["decimalPointErr"] = "";
+      formErrors["decimalPointErr"] = t("translation2:err_decimal_point_req");
     }
     if (!private_key) {
       formIsValid = true;
-      formErrors["privateKeyErr"] = "";
+      formErrors["privateKeyErr"] = t("translation2:err_private_key_req");
     }
     if (!receive_wallet_address) {
       formIsValid = true;
-      formErrors["receiveWalletErr"] = "";
+      formErrors["receiveWalletErr"] = t("translation2:err_receive_wallet_add_req");
     }
     setError({ formErrors: formErrors });
     return formIsValid;
@@ -99,7 +102,7 @@ const EditCurrency = ({ dispatch, res }) => {
     formData.append("decimal_point", userData.decimal_point);
     formData.append("private_key", userData.private_key);
     formData.append("receive_wallet_address", userData.receive_wallet_address);
-    !errorValue && dispatch(EditCurrencyData(formData, id));
+    !errorValue && dispatch(EditCurrencyData(formData, params.id));
   };
 
   return (
@@ -126,9 +129,21 @@ const EditCurrency = ({ dispatch, res }) => {
                   value={userData.name}
                   onChange={handleChange}
                 />
+                <label
+                  htmlFor="UserName"
+                  generated="true"
+                  className={
+                    "error " +
+                    (error.formErrors.nameErr
+                      ? " d-block"
+                      : "d-none")
+                  }
+                >
+                  {error.formErrors.nameErr}
+                </label>
               </div>
               {/* currency code */}
-              <div className="mb-3">
+              <div className="mb-3 admin-input-spacing">
                 <label htmlFor="currency_code" className="form-label text-white">
                   currency code:
                 </label>
@@ -141,9 +156,21 @@ const EditCurrency = ({ dispatch, res }) => {
                   value={userData.currency_code}
                   onChange={handleChange}
                 />
+                <label
+                  htmlFor="UserName"
+                  generated="true"
+                  className={
+                    "error " +
+                    (error.formErrors.currencyCodeErr
+                      ? " d-block"
+                      : "d-none")
+                  }
+                >
+                  {error.formErrors.currencyCodeErr}
+                </label>
               </div>
               {/* Image */}
-              <div className="mb-3">
+              <div className="mb-3 admin-input-spacing">
                 <label htmlFor="image" className="form-label text-white">
                   image :
                 </label>
@@ -155,9 +182,21 @@ const EditCurrency = ({ dispatch, res }) => {
                   name="image"
                   onChange={handleChange}
                 />
+                <label
+                  htmlFor="image"
+                  generated="true"
+                  className={
+                    "error " +
+                    (error.formErrors.imageErr
+                      ? " d-block"
+                      : "d-none")
+                  }
+                >
+                  {error.formErrors.imageErr}
+                </label>
               </div>
               {/* contract address */}
-              <div className="mb-3">
+              <div className="mb-3 admin-input-spacing">
                 <label htmlFor="contract_address" className="form-label text-white">
                   contract address:
                 </label>
@@ -170,9 +209,21 @@ const EditCurrency = ({ dispatch, res }) => {
                   value={userData.contract_address}
                   onChange={handleChange}
                 />
+                <label
+                  htmlFor="UserName"
+                  generated="true"
+                  className={
+                    "error " +
+                    (error.formErrors.contractAddErr
+                      ? " d-block"
+                      : "d-none")
+                  }
+                >
+                  {error.formErrors.contractAddErr}
+                </label>
               </div>
               {/* Abi key */}
-              <div className="mb-3">
+              <div className="mb-3 admin-input-spacing">
                 <label htmlFor="abi_key" className="form-label text-white">
                   abi key:
                 </label>
@@ -185,9 +236,21 @@ const EditCurrency = ({ dispatch, res }) => {
                   value={userData.abi_key}
                   onChange={handleChange}
                 />
+                <label
+                  htmlFor="UserName"
+                  generated="true"
+                  className={
+                    "error " +
+                    (error.formErrors.abiKeyErr
+                      ? " d-block"
+                      : "d-none")
+                  }
+                >
+                  {error.formErrors.abiKeyErr}
+                </label>
               </div>
               {/* decimal point */}
-              <div className="mb-3">
+              <div className="mb-3 admin-input-spacing">
                 <label htmlFor="decimal_point" className="form-label text-white">
                   decimal point:
                 </label>
@@ -200,9 +263,21 @@ const EditCurrency = ({ dispatch, res }) => {
                   value={userData.decimal_point}
                   onChange={handleChange}
                 />
+                <label
+                  htmlFor="UserName"
+                  generated="true"
+                  className={
+                    "error " +
+                    (error.formErrors.decimalPointErr
+                      ? " d-block"
+                      : "d-none")
+                  }
+                >
+                  {error.formErrors.decimalPointErr}
+                </label>
               </div>
               {/* Private Key */}
-              <div className="mb-3">
+              <div className="mb-3 admin-input-spacing">
                 <label htmlFor="private_key" className="form-label text-white">
                   private key:
                 </label>
@@ -215,9 +290,21 @@ const EditCurrency = ({ dispatch, res }) => {
                   value={userData.private_key}
                   onChange={handleChange}
                 />
+                <label
+                  htmlFor="UserName"
+                  generated="true"
+                  className={
+                    "error " +
+                    (error.formErrors.privateKeyErr
+                      ? " d-block"
+                      : "d-none")
+                  }
+                >
+                  {error.formErrors.privateKeyErr}
+                </label>
               </div>
               {/* Receive Wallet Address */}
-              <div className="mb-3">
+              <div className="mb-3 admin-input-spacing">
                 <label htmlFor="receive_wallet_address" className="form-label text-white">
                   receive wallet address:
                 </label>
@@ -230,15 +317,34 @@ const EditCurrency = ({ dispatch, res }) => {
                   value={userData.receive_wallet_address}
                   onChange={handleChange}
                 />
+                <label
+                  htmlFor="UserName"
+                  generated="true"
+                  className={
+                    "error " +
+                    (error.formErrors.receiveWalletErr
+                      ? " d-block"
+                      : "d-none")
+                  }
+                >
+                  {error.formErrors.receiveWalletErr}
+                </label>
               </div>
               {/* Update Button */}
-              <div className="mb-3">
+              <div className="text-center mt-5">
                 <button
-                  type="submit"
                   className="btn btn-primary"
+                  type="submit"
                   onClick={handleUpdate}
                 >
-                  Update
+                  {t("text_update")}
+                </button>
+                <button
+                  onClick={() => navigate(-1)}
+                  className="btn btn-primary cancel-btn ms-3"
+                  type="button"
+                >
+                  {t("text_cancel")}
                 </button>
               </div>
             </form>

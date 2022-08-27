@@ -53,16 +53,16 @@ const Login = ({ dispatch, resetPsd, updatePsd }) => {
   //connection successfully notify
   const notify = (data) => {
     if (data.status === true) {
-      toast.success(data.title);
+      toast.success(data.message);
     } else {
-      toast.error(data.title);
+      toast.error(data.message);
     }
   };
 
   function handleFormValidation() {
     const { username, password } = loginData;
     let formErrors = {};
-    let formIsValid = true;
+    let formIsValid = false;
     if (!username) {
       formIsValid = true;
       formErrors["userNameErr"] = t("translation2:err_user_name_req");
@@ -78,20 +78,27 @@ const Login = ({ dispatch, resetPsd, updatePsd }) => {
   // function call on click of sign in button
   const handleSubmit = async (e) => {
     e.preventDefault();
-    handleFormValidation();
-    var response = await fetch("/api/adminlogin", {
-      method: "POST",
-      headers: {
-        "Content-type": "application/json",
-      },
-      body: JSON.stringify(loginData),
-    });
-    var res_data = await response.json();
-    if (res_data.status === true) {
-      sessionStorage.setItem("isAdminLogedIn", true)
-      sessionStorage.setItem("UserData", JSON.stringify(res_data.message));
-      history("/dashboard");
-      notify(res_data);
+    const errorValue = handleFormValidation();
+
+    // handleFormValidation();
+    if (!errorValue) {
+      var response = await fetch("/api/adminlogin", {
+        method: "POST",
+        headers: {
+          "Content-type": "application/json",
+        },
+        body: JSON.stringify(loginData),
+      });
+      var res_data = await response.json();
+      if (res_data.status === true) {
+        sessionStorage.setItem("isAdminLogedIn", true)
+        sessionStorage.setItem("UserData", JSON.stringify(res_data.message));
+        history("/dashboard");
+        notify(res_data);
+      }
+      else {
+        toast.error(res_data.message)
+      }
     }
   }
 
