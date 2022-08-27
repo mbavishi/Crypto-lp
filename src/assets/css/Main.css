@@ -110,6 +110,14 @@ html {
     text-decoration: none;
 }
 
+.not-found {
+    color: var(--orange-color);
+}
+
+.not-found h1 {
+    font-size: 70px !important;
+}
+
 body {
     height: 100%;
     background-color: var(--primary-color);
@@ -463,6 +471,10 @@ form a {
     font-family: 'roboto-regular';
     text-transform: uppercase;
     border-radius: 0;
+}
+
+.text-uppercase {
+    text-transform: uppercase;
 }
 
 .rate-option input:focus-visible {

@@ -97,5 +97,7 @@
     "text_smtp_pass": "Smtp Pass",
     "text_smtp_secure": "Smtp Secure",
     "text_logout": "Logout",
-    "text_lorem": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent feugiat felis eu ante."
+    "text_lorem": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent feugiat felis eu ante.",
+    "text_not_found": "404 - Page not found",
+    "text_back_to_home": "Back to Home"
 }

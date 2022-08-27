@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import AdminRoutes from "./Routes/AdminRoutes";
 import MainRoutes from "./Routes/MainRoutes";
+import NotFound from "./common/notFound";
 // bootstrap files
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.min.js";
@@ -38,6 +39,7 @@ function App() {
           {MainRoute}
           {/* Admin Routing */}
           {AdminRoute}
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </Router>
     </>
