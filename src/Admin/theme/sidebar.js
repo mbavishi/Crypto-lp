@@ -65,14 +65,14 @@ const Sidebar = () => {
               <NavLink to="/apu_rate">
                 <i className="fa-solid fa-star"></i>
                 <span className="link_name">{t("text_masters")}</span>
-                <i className="fa-solid fa-angle-down arrow"></i>
+                {/* <i className="fa-solid fa-angle-down arrow"></i> */}
               </NavLink>
             </div>
             <ul className="sub-menu theme-border">
               <li>
-                <NavLink className="link_name" to="/apu_rate">
+                <a className="link_name">
                   {t("text_masters")}
-                </NavLink>
+                </a>
               </li>
               <li>
                 <NavLink to="/apu_rate">{t("text_APU_rate")}</NavLink>
@@ -85,7 +85,7 @@ const Sidebar = () => {
               <NavLink to="/member">
                 <i className="fa-solid fa-user-group"></i>
                 <span className="link_name">{t("text_member")}</span>
-                <i className="fa-solid fa-angle-down arrow"></i>
+                {/* <i className="fa-solid fa-angle-down arrow"></i> */}
               </NavLink>
             </div>
             <ul className="sub-menu theme-border">
@@ -112,12 +112,12 @@ const Sidebar = () => {
               <NavLink to="/transaction/pending">
                 <i className="fa-solid fa-file-invoice-dollar"></i>
                 <span className="link_name">{t("text_transaction")}</span>
-                <i className="fa-solid fa-angle-down arrow"></i>
+                {/* <i className="fa-solid fa-angle-down arrow"></i> */}
               </NavLink>
             </div>
             <ul className="sub-menu theme-border">
               <li>
-                <a className="link_name" href="">
+                <a className="link_name">
                   {t("text_transaction")}
                 </a>
               </li>
@@ -166,12 +166,12 @@ const Sidebar = () => {
               <NavLink to="/currency">
                 <i className="fa-solid fa-file-invoice-dollar"></i>
                 <span className="link_name">{t("text_currency")}</span>
-                <i className="fa-solid fa-angle-down arrow"></i>
+                {/* <i className="fa-solid fa-angle-down arrow"></i> */}
               </NavLink>
             </div>
             <ul className="sub-menu theme-border">
               <li>
-                <a className="link_name" href="">
+                <a className="link_name">
                   {t("text_currency")}
                 </a>
               </li>

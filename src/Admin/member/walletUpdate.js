@@ -114,3 +114,8 @@ const WalletUpdate = () => {
 }
 
 export default WalletUpdate;
+
+// hy
+// crypto - lp ma badhu thay gyu chhe
+// currency valu new module add kryu and not found nu page pn add kri didhu chhe
+// dataTable ma je problem hto e pn solved
