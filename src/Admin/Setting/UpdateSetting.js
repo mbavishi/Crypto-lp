@@ -6,6 +6,7 @@ import {
 import { useNavigate } from "react-router-dom";
 import Spinner from "react-bootstrap/Spinner";
 import AdminTheme from "../theme/AdminTheme";
+import Title from "../../common/title";
 import { connect } from "react-redux";
 import { t } from "i18next";
 
@@ -48,6 +49,7 @@ const UpdateSetting = ({ dispatch, res, updateSett }) => {
 
   return (
     <>
+      <Title props={t("text_setting")} />
       <AdminTheme header={t("text_setting")}>
         {res.loading ? (
           <div className="d-flex text-center justify-content-center mt-10">
