@@ -5,7 +5,6 @@ import React from "react";
 
 function Private({ children }) {
   const status = sessionStorage.getItem("isAdminLogedIn")
-  console.log(status);
   if (!status) {
     return <Navigate to="/admin" />
   }

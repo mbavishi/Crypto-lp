@@ -30,14 +30,12 @@ const AddCurrencyPair = ({ dispatch, res, curr }) => {
       [name]: value,
     });
   };
-  console.log("currency", currency);
 
   // form validation
   function handleFormValidation() {
     const { to_currency_id, from_currency_id } = currency;
     let formErrors = {};
     let formIsValid = true;
-    console.log("dsagdj");
     if (!to_currency_id) {
       formIsValid = true;
       formErrors["toCurrencyErr"] = t("translation2:err_to_curr_req");

@@ -86,12 +86,10 @@ const AddCurrency = ({ dispatch, res }) => {
     return formIsValid
   }
 
-  console.log(error.formErrors.nameErr);
   //add currency data
   const handleUpdate = (e) => {
     e.preventDefault();
     const errorValue = handleFormValidation();
-    console.log(errorValue);
     const formData = new FormData();
     formData.append("name", userData.name);
     formData.append("currency_code", userData.currency_code);
@@ -104,7 +102,6 @@ const AddCurrency = ({ dispatch, res }) => {
     !errorValue && dispatch(AddCurrencyData(formData))
   };
 
-  console.log(res);
   return (
     <>
       <Title props={t("text_add_currency")} />

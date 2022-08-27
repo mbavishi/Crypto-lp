@@ -23,7 +23,6 @@ export function ResetPsd(data) {
       body: JSON.stringify(data),
     });
     var res_data = await response.json();
-    console.log(res_data);
     notifyMess(res_data);
     var return_response = {
       type: "RESET_DATA",
@@ -101,7 +100,6 @@ export function AddCurrencyData(data) {
       body: data,
     });
     var res_data = await response.json();
-    console.log(res_data);
     notifyMess(res_data);
     var return_response = {
       type: "ADD_CURR_DATA",
@@ -131,7 +129,6 @@ export function EditCurrencyData(data, id) {
 // add new currency pair
 export function AddCurrencyPairData(data) {
   return async (dispatch) => {
-    console.log(data);
     var response = await fetch(`/api/add_currency_pair`, {
       method: "POST",
       headers: {
@@ -140,7 +137,6 @@ export function AddCurrencyPairData(data) {
       body: JSON.stringify(data),
     });
     var res_data = await response.json();
-    console.log(res_data);
     notifyMess(res_data);
     var return_response = {
       type: "ADD_CURR_PAIR_DATA",
@@ -175,7 +171,6 @@ export function CurrencyData() {
   return async (dispatch) => {
     var response = await fetch(`/api/all_currency`);
     var res_data = await response.json();
-    console.log(res_data);
     var return_response = {
       type: "CURR_DATA",
       payload: res_data,
@@ -200,7 +195,6 @@ export function GetSettingData() {
 // update setting data
 export function UpdateSettingData(data) {
   return async (dispatch) => {
-    console.log();
     var response = await fetch(`/api/update_settings_data`, {
       method: "POST",
       headers: {
@@ -220,11 +214,9 @@ export function UpdateSettingData(data) {
 
 // get currency id wise
 export function GetCurrencyData(id) {
-  console.log(id);
   return async (dispatch) => {
     var response = await fetch(`/api/get_insert_curr_data/${id}`);
     var res_data = await response.json();
-    console.log(res_data);
     var return_response = {
       type: "GET_CURR_DATA",
       payload: res_data,
@@ -261,7 +253,6 @@ export function DeleteCurrencyPairData(id) {
       },
     });
     var res_data = await response.json();
-    console.log(res_data);
     var return_response = {
       type: "DELETE_CURR_PAIR_DATA",
       payload: res_data,
@@ -280,7 +271,6 @@ export function ChangeCurrStatusData(id) {
       },
     });
     var res_data = await response.json();
-    console.log(res_data);
     var return_response = {
       type: "CHANGE_CURR_STATUS",
       payload: res_data,
@@ -312,7 +302,6 @@ export function MemberDetails(id) {
   return async (dispatch) => {
     var response = await fetch(`/api/view_mem_data/${id}`);
     var res_data = await response.json();
-    console.log(res_data);
     var return_response = {
       type: "MEMBER_DETAILS",
       payload: res_data,

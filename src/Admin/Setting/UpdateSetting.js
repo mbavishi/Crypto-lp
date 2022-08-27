@@ -23,6 +23,7 @@ const UpdateSetting = ({ dispatch, res, updateSett }) => {
   useEffect(() => {
     dispatch(GetSettingData());
   }, [dispatch]);
+
   useEffect(() => {
     !res.loading &&
       res.data.config_table.map((data) => {
@@ -30,7 +31,6 @@ const UpdateSetting = ({ dispatch, res, updateSett }) => {
       });
   }, [res]);
 
-  console.log(setting);
   //chnage the data of setting
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -41,7 +41,6 @@ const UpdateSetting = ({ dispatch, res, updateSett }) => {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("fdsf", setting);
     dispatch(UpdateSettingData(setting));
   };
 
