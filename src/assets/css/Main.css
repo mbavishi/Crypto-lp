@@ -195,7 +195,7 @@ body {
 }
 
 .active {
-    color: var(--secondary-color);
+    color: var(--secondary-color) !important;
     background-color: rgb(255, 92, 60, 0.1) !important;
 }
 

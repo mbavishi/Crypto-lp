@@ -32,7 +32,7 @@ const EditCurrency = ({ dispatch, res }) => {
       setUserData({
         name: res_data.get_currency_data[0].name,
         currency_code: res_data.get_currency_data[0].currency_code,
-        image: res_data.get_currency_data[0].image,
+        // image: res_data.get_currency_data[0].image,
         contract_address: res_data.get_currency_data[0].contract_address,
         abi_key: res_data.get_currency_data[0].abi_key,
         decimal_point: res_data.get_currency_data[0].decimal_point,
@@ -77,10 +77,10 @@ const EditCurrency = ({ dispatch, res }) => {
       formIsValid = true;
       formErrors["currencyCodeErr"] = t("translation2:err_curr_code_req");
     }
-    if (!image) {
-      formIsValid = true;
-      formErrors["imageErr"] = t("translation2:err_img_req");
-    }
+    // if (!image) {
+    //   formIsValid = true;
+    //   formErrors["imageErr"] = t("translation2:err_img_req");
+    // }
     if (!contract_address) {
       formIsValid = true;
       formErrors["contractAddErr"] = t("translation2:err_contract_add_req");
@@ -108,11 +108,12 @@ const EditCurrency = ({ dispatch, res }) => {
   // update the curruncy data
   const handleUpdate = (e) => {
     e.preventDefault();
+    console.log(userData.image);
     const formData = new FormData();
     const errorValue = handleFormValidation();
     formData.append("name", userData.name);
     formData.append("currency_code", userData.currency_code);
-    formData.append("image", userData.image);
+    formData.append("image", userData.image ? userData.image : "");
     formData.append("contract_address", userData.contract_address);
     formData.append("abi_key", userData.abi_key);
     formData.append("decimal_point", userData.decimal_point);
@@ -161,7 +162,7 @@ const EditCurrency = ({ dispatch, res }) => {
               {/* currency code */}
               <div className="mb-3 admin-input-spacing">
                 <label htmlFor="currency_code" className="form-label text-white">
-                  currency code:
+                  {t("text_currency_code")}
                 </label>
                 <input
                   type="text"
@@ -188,7 +189,7 @@ const EditCurrency = ({ dispatch, res }) => {
               {/* Image */}
               <div className="mb-3 admin-input-spacing">
                 <label htmlFor="image" className="form-label text-white">
-                  image :
+                  {t("text_image")}
                 </label>
                 <input
                   type="file"
@@ -214,7 +215,7 @@ const EditCurrency = ({ dispatch, res }) => {
               {/* contract address */}
               <div className="mb-3 admin-input-spacing">
                 <label htmlFor="contract_address" className="form-label text-white">
-                  contract address:
+                  {t("text_contract_address")}
                 </label>
                 <input
                   type="text"
@@ -241,7 +242,7 @@ const EditCurrency = ({ dispatch, res }) => {
               {/* Abi key */}
               <div className="mb-3 admin-input-spacing">
                 <label htmlFor="abi_key" className="form-label text-white">
-                  abi key:
+                  {t("text_abi_key")}
                 </label>
                 <input
                   type="email"

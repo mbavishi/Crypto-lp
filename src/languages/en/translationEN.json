@@ -91,6 +91,11 @@
     "text_join_date": "Join Date",
     "text_user_id": "User ID",
     "text_masters": "Masters",
+    "text_smtp_host": "Smtp Host",
+    "text_smtp_port": "Smtp Port",
+    "text_smtp_user": "Smtp User",
+    "text_smtp_pass": "Smtp Pass",
+    "text_smtp_secure": "Smtp Secure",
     "text_logout": "Logout",
     "text_lorem": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent feugiat felis eu ante."
 }

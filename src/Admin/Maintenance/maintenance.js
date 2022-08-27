@@ -52,7 +52,7 @@ const Maintenance = ({ dispatch, res, updateSett }) => {
     else {
         console.log(update);
     }
-
+    console.log(setting);
     return (
         <>
             <Title props={t("text_maintenance")} />
@@ -80,8 +80,8 @@ const Maintenance = ({ dispatch, res, updateSett }) => {
                                                 className="custom-control-input"
                                                 value="1"
                                                 onChange={handleChange}
-                                                defaultChecked={
-                                                    setting.maintenance_status === "1" && true
+                                                checked={
+                                                    setting.maintenance_status == "1" && true
                                                 }
                                             />
                                             &nbsp;
@@ -101,8 +101,8 @@ const Maintenance = ({ dispatch, res, updateSett }) => {
                                                 className="custom-control-input"
                                                 value="0"
                                                 onChange={handleChange}
-                                                defaultChecked={
-                                                    setting.maintenance_status === "0" && true
+                                                checked={
+                                                    setting.maintenance_status == "0" && true
                                                 }
                                             />
                                             &nbsp;

@@ -1,8 +1,8 @@
 import { React, useEffect } from 'react';
 import { MemberDetails } from "../../../Redux/Action/AdminData";
+import Spinner from "react-bootstrap/Spinner";
 import { useParams } from 'react-router-dom';
 import { connect } from "react-redux";
-import Spinner from "react-bootstrap/Spinner";
 import { t } from 'i18next';
 
 const View = ({ dispatch, res }) => {

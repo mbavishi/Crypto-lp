@@ -4,7 +4,7 @@ import { Navigate } from "react-router-dom";
 import React from "react";
 
 function Private({ children }) {
-  const status = sessionStorage.getItem("isAdminLogedIn")
+  const status = sessionStorage.getItem("isAdminLogedIn");
   if (!status) {
     return <Navigate to="/admin" />
   }
