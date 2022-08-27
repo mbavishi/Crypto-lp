@@ -186,10 +186,10 @@ const Login = ({ dispatch, resetPsd, updatePsd }) => {
           <div id="recaptcha-container" />
         </Modal.Body>
         <Modal.Footer>
-          <Button className="btn-lightgray" onClick={handleClose}>
+          <Button className="btn-add" onClick={handleClose}>
             {t("btn_close")}
           </Button>
-          <Button className="btn-lightpink" onClick={handleResetPassword}>
+          <Button className="btn-add" onClick={handleResetPassword}>
             send otp
           </Button>
         </Modal.Footer>

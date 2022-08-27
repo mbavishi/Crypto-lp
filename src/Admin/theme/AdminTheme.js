@@ -18,9 +18,7 @@ const AdminTheme = (props) => {
             <Header />
             <div className="wrapper">
               <SubHeader props={props.header} />
-              {/* <div className="row statistics-row mt-md-5"> */}
               {props.children}
-              {/* </div> */}
             </div>
             <Footer />
           </div>

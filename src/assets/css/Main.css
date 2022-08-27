@@ -2266,6 +2266,11 @@ table.dataTable thead>tr>th.sorting:after {
         padding: 5px 30px !important;
     }
 
+    .btn-add {
+        font-size: 18px !important;
+        padding: 3px 20px !important;
+    }
+
     .crypto-col p {
         border-left: 0px !important;
         padding-left: 0px !important;

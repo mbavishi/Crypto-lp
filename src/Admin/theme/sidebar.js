@@ -109,7 +109,7 @@ const Sidebar = () => {
           {/* Transaction */}
           <li>
             <div className="iocn-link">
-              <NavLink to="/transaction">
+              <NavLink to="/transaction/pending">
                 <i className="fa-solid fa-file-invoice-dollar"></i>
                 <span className="link_name">{t("text_transaction")}</span>
                 <i className="fa-solid fa-angle-down arrow"></i>
