@@ -49,7 +49,7 @@ const WalletUpdate = () => {
                     },
                     { data: "to_rate" },
                 ],
-                Destroy: true,
+                destroy: true,
             });
         };
         return {

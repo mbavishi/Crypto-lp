@@ -39,7 +39,7 @@ const TranHistory = () => {
                     { data: "to_rate" },
                     { data: "created_at" },
                 ],
-                Destroy: true,
+                destroy: true,
             });
         };
         return {

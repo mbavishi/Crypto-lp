@@ -68,7 +68,7 @@ const Transaction = () => {
                         },
                     },
                 ],
-                Destroy: true,
+                destroy: true,
             });
         };
         return {

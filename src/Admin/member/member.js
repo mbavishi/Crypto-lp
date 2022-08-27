@@ -59,7 +59,7 @@ const Member = () => {
                         }
                     },
                 ],
-                Destroy: true,
+                destroy: true,
             });
             // edit
             $("#wallet tbody").on("click", "#view-btn", function () {

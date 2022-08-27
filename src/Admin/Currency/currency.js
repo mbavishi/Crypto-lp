@@ -52,7 +52,7 @@ const Currency = () => {
                         }
                     },
                 ],
-                Destroy: true,
+                destroy: true,
             });
             // edit
             $("#currency tbody").on("click", "#edit-btn", function () {

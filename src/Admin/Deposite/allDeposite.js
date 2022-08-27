@@ -61,7 +61,7 @@ const AllDeposite = () => {
                         },
                     },
                 ],
-                Destroy: true,
+                destroy: true,
             });
         };
         return {
