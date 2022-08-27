@@ -89,6 +89,15 @@ export function CurrReducer(state = initialState, action) {
       return state;
   }
 }
+//update currency  id wise
+export function GetCurrReducer(state = initialState, action) {
+  switch (action.type) {
+    case "GET_CURR_DATA":
+      return { data: action.payload, loading: false };
+    default:
+      return state;
+  }
+}
 //update currency  pair data
 export function SettingReducer(state = initialState, action) {
   switch (action.type) {

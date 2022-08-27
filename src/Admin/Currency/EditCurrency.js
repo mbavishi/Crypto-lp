@@ -1,4 +1,4 @@
-import { React, useState } from "react";
+import { React, useState, useEffect } from "react";
 import { EditCurrencyData } from "../../Redux/Action/AdminData";
 import { useNavigate, useParams } from "react-router-dom";
 import AdminTheme from "../theme/AdminTheme";
@@ -9,7 +9,6 @@ import { t } from "i18next";
 const EditCurrency = ({ dispatch, res }) => {
   const params = useParams();
   const navigate = useNavigate();
-  console.log(params.id);
   //store the data of currency
   const [userData, setUserData] = useState({
     name: "",
@@ -21,11 +20,28 @@ const EditCurrency = ({ dispatch, res }) => {
     private_key: "",
     receive_wallet_address: "",
   });
-
   //handle the validation
   const [error, setError] = useState({
     formErrors: {},
   });
+
+  useEffect(() => {
+    async function data() {
+      var response = await fetch(`/api/get_insert_curr_data/${params.id}`);
+      var res_data = await response.json();
+      setUserData({
+        name: res_data.get_currency_data[0].name,
+        currency_code: res_data.get_currency_data[0].currency_code,
+        image: res_data.get_currency_data[0].image,
+        contract_address: res_data.get_currency_data[0].contract_address,
+        abi_key: res_data.get_currency_data[0].abi_key,
+        decimal_point: res_data.get_currency_data[0].decimal_point,
+        private_key: res_data.get_currency_data[0].private_key,
+        receive_wallet_address: res_data.get_currency_data[0].receive_wallet_address,
+      })
+    }
+    data();
+  }, [])
 
   //change currency data
   const handleChange = (e) => {
@@ -92,6 +108,10 @@ const EditCurrency = ({ dispatch, res }) => {
   // update the curruncy data
   const handleUpdate = (e) => {
     e.preventDefault();
+    console.log(userData);
+    const data = {
+      ...userData
+    }
     const formData = new FormData();
     const errorValue = handleFormValidation();
     formData.append("name", userData.name);

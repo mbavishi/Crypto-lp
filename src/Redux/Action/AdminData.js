@@ -116,10 +116,7 @@ export function EditCurrencyData(data, id) {
   return async (dispatch) => {
     var response = await fetch(`/api/edit_currency_data/${id}`, {
       method: "POST",
-      headers: {
-        "Content-type": "application/json",
-      },
-      body: JSON.stringify(data),
+      body: data,
     });
     var res_data = await response.json();
     notifyMess(res_data);
@@ -215,6 +212,21 @@ export function UpdateSettingData(data) {
     notifyMess(res_data);
     var return_response = {
       type: "EDIT_SETTING_DATA",
+      payload: res_data,
+    };
+    dispatch(return_response);
+  };
+}
+
+// get currency id wise
+export function GetCurrencyData(id) {
+  console.log(id);
+  return async (dispatch) => {
+    var response = await fetch(`/api/get_insert_curr_data/${id}`);
+    var res_data = await response.json();
+    console.log(res_data);
+    var return_response = {
+      type: "GET_CURR_DATA",
       payload: res_data,
     };
     dispatch(return_response);

@@ -1,27 +1,28 @@
 <?php
 
 /*
-|--------------------------------------------------------------------------
-| Application Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register all of the routes for an application.
-| It is a breeze. Simply tell Lumen the URIs it should respond to
-| and give it the Closure to call when that URI is requested.
-|
+  |--------------------------------------------------------------------------
+  | Application Routes
+  |--------------------------------------------------------------------------
+  |
+  | Here is where you can register all of the routes for an application.
+  | It is a breeze. Simply tell Lumen the URIs it should respond to
+  | and give it the Closure to call when that URI is requested.
+  |
  */
 
 $router->get('/', function () use ($router) {
     return $router->app->version();
 });
-$router->group(['prefix' => '', 'middleware' => 'lang'], function () use ($router) {
+$router->group(['prefix' => '','middleware' => 'lang'], function () use ($router) {
 
-    $router->post('adminlogin', 'ManageApiController@authenticate');
+    $router->post('adminlogin', 'ManageApiController@authenticate');  
     $router->post('sendotp', 'ManageApiController@adminSendOtp');
     $router->post('pass_update', 'ManageApiController@changeForgotPassword');
     $router->post('user_wallet_conn', 'ManageApiController@getUserwallteData');
     $router->post('get_currency_data', 'ManageApiController@getCurrencyDatatable');
     $router->post('add_currency_data', 'ManageApiController@addCurrencyData');
+    $router->get('get_insert_curr_data/{curr_id}', 'ManageApiController@getInsertCurrencyData');
     $router->post('edit_currency_data/{curr_id}', 'ManageApiController@updateCurrencyData');
     $router->post('delete_currency_data/{curr_id}', 'ManageApiController@deleteCurrencyData');
     $router->post('change_currency_status/{curr_id}', 'ManageApiController@changeCurrencyStatus');
@@ -42,6 +43,10 @@ $router->group(['prefix' => '', 'middleware' => 'lang'], function () use ($route
     $router->get('all_currency', 'ManageApiController@getCurrencyData');
     $router->post('wallet_add', 'ManageApiController@getWalletAddress');
     $router->post('get_user_data', 'ManageApiController@getMemberData');
-    $router->get('vide_mem_data/{user_id}', 'ManageApiController@viewMemberDetails');
+    $router->get('view_mem_data/{user_id}', 'ManageApiController@viewMemberDetails');
+
 
 });
+
+
+
