@@ -2,10 +2,9 @@ import { React, useEffect } from 'react';
 import AdminTheme from '../theme/AdminTheme';
 import Title from '../../common/title';
 import { t } from 'i18next';
+import $ from "jquery";
 
 const AllDeposite = () => {
-    const $ = window.$
-
     useEffect(() => {
         TableDatatablesManaged.init();
     }, [])

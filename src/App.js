@@ -3,6 +3,9 @@ import { ToastContainer } from "react-toastify";
 import AdminRoutes from "./Routes/AdminRoutes";
 import MainRoutes from "./Routes/MainRoutes";
 import NotFound from "./common/notFound";
+// datables
+import 'datatables.net';
+import 'datatables.net-dt/css/jquery.dataTables.css';
 // bootstrap files
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.min.js";

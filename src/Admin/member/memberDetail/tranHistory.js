@@ -1,9 +1,9 @@
 import { React, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { t } from 'i18next';
+import $ from "jquery";
 
 const TranHistory = () => {
-    const $ = window.$;
     const params = useParams();
 
     useEffect(() => {

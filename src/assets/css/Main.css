@@ -118,6 +118,10 @@ html {
     font-size: 70px !important;
 }
 
+div.dataTables_processing>div:last-child>div {
+    background: var(--orange-color) !important;
+}
+
 body {
     height: 100%;
     background-color: var(--primary-color);

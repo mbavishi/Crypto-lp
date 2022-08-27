@@ -3,10 +3,10 @@ import { useNavigate } from 'react-router-dom';
 import AdminTheme from '../theme/AdminTheme';
 import Title from '../../common/title';
 import { t } from 'i18next';
+import $ from "jquery";
 
 const Member = () => {
     const History = useNavigate()
-    const $ = window.$;
 
     useEffect(() => {
         TableDatatablesManaged.init();

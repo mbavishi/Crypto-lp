@@ -2,9 +2,9 @@ import React, { useEffect } from "react";
 import AdminTheme from "../theme/AdminTheme";
 import Title from "../../common/title";
 import { t } from "i18next";
+import $ from "jquery";
 
 const Transaction = () => {
-    const $ = window.$;
     const path = window.location.pathname;
     var status;
     var name;

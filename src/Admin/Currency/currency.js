@@ -3,10 +3,9 @@ import AdminTheme from '../theme/AdminTheme';
 import { NavLink } from 'react-router-dom';
 import Title from '../../common/title';
 import { t } from 'i18next';
+import $ from "jquery";
 
 const Currency = () => {
-    const $ = window.$;
-
     useEffect(() => {
         TableDatatablesManaged.init();
     }, [])
