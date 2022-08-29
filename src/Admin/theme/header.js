@@ -5,7 +5,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { t } from "i18next";
 
 const Header = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const AdminLogout = () => {
     sessionStorage.clear();
@@ -39,9 +39,8 @@ const Header = () => {
           <i className="fa-solid fa fa-bell notification-icon"></i>
         </div>
         {/* dropdown */}
-        <div className="profile-details position-absolute">
-          <a href="#"
-          >
+        <div className="profile-details position-absolute pointer">
+          <a>
             <img
               src={Admin}
               alt="logo"

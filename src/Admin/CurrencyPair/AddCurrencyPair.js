@@ -151,8 +151,8 @@ const AddCurrencyPair = ({ dispatch, res, curr }) => {
                       {state1.formErrors.toCurrencyErr}
                     </label>
                   </div>
-                  {/* submit */}
                   <div className="text-center mt-5">
+                    {/* button add */}
                     <button
                       className="btn btn-primary"
                       type="submit"
@@ -160,6 +160,7 @@ const AddCurrencyPair = ({ dispatch, res, curr }) => {
                     >
                       {t("text_add")}
                     </button>
+                    {/* button cancel */}
                     <button
                       onClick={() => navigate(-1)}
                       className="btn btn-primary cancel-btn ms-3"

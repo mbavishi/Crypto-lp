@@ -6,12 +6,37 @@ import { t } from "i18next";
 const Sidebar = () => {
   // manage state
   const [state, setState] = useState(false);
+  const [show, setShow] = useState(false);
+  const [show2, setShow2] = useState(false);
+  const [show3, setShow3] = useState(false);
+  const [show4, setShow4] = useState(false);
 
   const handleClick = () => {
     let sidebar = document.querySelector(".sidebar");
     sidebar.classList.toggle("close");
     setState(!state);
   };
+
+  const handleClick1 = () => {
+    setShow(!show)
+  };
+  const handleClick2 = () => {
+    setShow2(!show2)
+  };
+  const handleClick3 = () => {
+    setShow3(!show3)
+  };
+  const handleClick4 = () => {
+    setShow4(!show4)
+  };
+
+  let arrow = document.querySelectorAll(".arrow");
+  for (var i = 0; i < arrow.length; i++) {
+    arrow[i].addEventListener("click", (e) => {
+      let arrowParent = e.target.parentElement.parentElement;
+      arrowParent.classList.toggle("showMenu");
+    });
+  }
 
   return (
     <>
@@ -60,16 +85,16 @@ const Sidebar = () => {
             </ul>
           </li>
           {/* masters */}
-          <li>
+          <li className={show ? "showMenu" : ""}>
             <div className="iocn-link">
               <NavLink to="/apu_rate">
                 <i className="fa-solid fa-star"></i>
                 <span className="link_name">{t("text_masters")}</span>
-                {/* <i className="fa-solid fa-angle-down arrow"></i> */}
               </NavLink>
+              <i className="fa-solid fa-angle-down arrow" onClick={handleClick1}></i>
             </div>
             <ul className="sub-menu theme-border">
-              <li>
+              <li className="showMenu">
                 <a className="link_name">
                   {t("text_masters")}
                 </a>
@@ -80,13 +105,13 @@ const Sidebar = () => {
             </ul>
           </li>
           {/* Member */}
-          <li>
+          <li className={show2 ? "showMenu" : ""}>
             <div className="iocn-link">
               <NavLink to="/member">
                 <i className="fa-solid fa-user-group"></i>
                 <span className="link_name">{t("text_member")}</span>
-                {/* <i className="fa-solid fa-angle-down arrow"></i> */}
               </NavLink>
+              <i className="fa-solid fa-angle-down arrow" onClick={handleClick2}></i>
             </div>
             <ul className="sub-menu theme-border">
               <li>
@@ -107,13 +132,13 @@ const Sidebar = () => {
             </ul>
           </li>
           {/* Transaction */}
-          <li>
+          <li className={show3 ? "showMenu" : ""}>
             <div className="iocn-link">
               <NavLink to="/transaction/pending">
                 <i className="fa-solid fa-file-invoice-dollar"></i>
                 <span className="link_name">{t("text_transaction")}</span>
-                {/* <i className="fa-solid fa-angle-down arrow"></i> */}
               </NavLink>
+              <i className="fa-solid fa-angle-down arrow" onClick={handleClick3}></i>
             </div>
             <ul className="sub-menu theme-border">
               <li>
@@ -161,13 +186,13 @@ const Sidebar = () => {
             </ul>
           </li>
           {/* currency */}
-          <li>
+          <li className={show4 ? "showMenu" : ""}>
             <div className="iocn-link">
               <NavLink to="/currency">
                 <i className="fa-solid fa-file-invoice-dollar"></i>
                 <span className="link_name">{t("text_currency")}</span>
-                {/* <i className="fa-solid fa-angle-down arrow"></i> */}
               </NavLink>
+              <i className="fa-solid fa-angle-down arrow" onClick={handleClick4}></i>
             </div>
             <ul className="sub-menu theme-border">
               <li>
