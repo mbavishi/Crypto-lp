@@ -25,7 +25,7 @@ const AdminRoutes = [
   { path: "/currency/add", component: <Private><AddCurrency /></Private> },
   { path: "/currency/edit/:id", component: <Private><EditCurrency /></Private> },
   { path: "/currPair/add", component: <Private><AddCurrencyPair /></Private> },
-  { path: "/currPair/edit", component: <Private><EditCurrencyPair /></Private> },
+  { path: "/currPair/edit/:id", component: <Private><EditCurrencyPair /></Private> },
   { path: "/setting", component: <Private><UpdateSetting /></Private> },
   { path: "/dashboard", component: <Private><Dashboard /></Private> },
   { path: "/apu_rate", component: <Private><ApuRate /></Private> },

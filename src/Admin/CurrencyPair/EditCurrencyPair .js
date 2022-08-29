@@ -1,5 +1,5 @@
 import { React, useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import {
   EditCurrencyPairData,
   CurrencyData,
@@ -12,6 +12,7 @@ import { t } from "i18next";
 
 const EditCurrencyPair = ({ dispatch, res, curr }) => {
   const navigate = useNavigate();
+  const params = useParams();
 
   //store currency pair data
   const [currency, setCurrency] = useState({
@@ -31,7 +32,7 @@ const EditCurrencyPair = ({ dispatch, res, curr }) => {
   //add the currency pair
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(EditCurrencyPairData(currency, 2));
+    dispatch(EditCurrencyPairData(currency, params.id));
   };
   const editCurr = res;
   console.log(editCurr);

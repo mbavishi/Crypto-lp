@@ -7,6 +7,7 @@ import { t } from "i18next";
 const Header = () => {
   const navigate = useNavigate();
 
+  // logout
   const AdminLogout = () => {
     sessionStorage.clear();
     navigate("/admin");
@@ -49,6 +50,7 @@ const Header = () => {
               height="82"
             />
           </a>
+          {/* admin name */}
           <span className="admin-name">{t("text_admin")}</span>
           <i className="fa-solid fa-angle-down nav-downicon"></i>
           <div className="profile-icon">
@@ -76,6 +78,3 @@ const Header = () => {
 };
 
 export default Header;
-
-// hyy
-// aaj ni 4 vaga pchhi ni leave joie chhe

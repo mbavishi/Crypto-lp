@@ -602,6 +602,11 @@ form a {
     border-radius: 10px;
 }
 
+.sidebar .nav-links li i.tran {
+    min-width: 0px;
+    margin-right: 37px;
+}
+
 .sidebar .nav-links li.showMenu i.arrow {
     transform: rotate(-180deg);
 }

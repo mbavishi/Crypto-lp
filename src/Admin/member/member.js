@@ -6,8 +6,6 @@ import { t } from 'i18next';
 import $ from "jquery";
 
 const Member = () => {
-    const History = useNavigate()
-
     useEffect(() => {
         TableDatatablesManaged.init();
     }, [])
@@ -15,7 +13,6 @@ const Member = () => {
     // edit
     function handleEdit(id) {
         window.location.href = `/member/view/${id}`
-        // History(`/member/view/${id}`)
     }
 
     //receive status  user transaction
@@ -59,12 +56,6 @@ const Member = () => {
                     },
                 ],
                 destroy: true,
-            });
-            // edit
-            $("#wallet tbody").on("click", "#view-btn", function () {
-                var row = $(this).parents("tr")[0];
-                const id = table1.row(row).data().user_id;
-                handleEdit(id);
             });
         };
         return {

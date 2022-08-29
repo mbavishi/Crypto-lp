@@ -269,7 +269,7 @@ const EditCurrency = ({ dispatch, res }) => {
               {/* decimal point */}
               <div className="mb-3 admin-input-spacing">
                 <label htmlFor="decimal_point" className="form-label text-white">
-                  decimal point:
+                  {t("text_decimal_point")}
                 </label>
                 <input
                   type="email"
@@ -296,7 +296,7 @@ const EditCurrency = ({ dispatch, res }) => {
               {/* Private Key */}
               <div className="mb-3 admin-input-spacing">
                 <label htmlFor="private_key" className="form-label text-white">
-                  private key:
+                  {t("text_private_key")}
                 </label>
                 <input
                   type="email"
@@ -323,7 +323,7 @@ const EditCurrency = ({ dispatch, res }) => {
               {/* Receive Wallet Address */}
               <div className="mb-3 admin-input-spacing">
                 <label htmlFor="receive_wallet_address" className="form-label text-white">
-                  receive wallet address:
+                  {t("text_receive_wallet_address")}
                 </label>
                 <input
                   type="email"

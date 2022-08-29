@@ -30,14 +30,6 @@ const Sidebar = () => {
     setShow4(!show4)
   };
 
-  let arrow = document.querySelectorAll(".arrow");
-  for (var i = 0; i < arrow.length; i++) {
-    arrow[i].addEventListener("click", (e) => {
-      let arrowParent = e.target.parentElement.parentElement;
-      arrowParent.classList.toggle("showMenu");
-    });
-  }
-
   return (
     <>
       <div className="sidebar close">
@@ -135,10 +127,10 @@ const Sidebar = () => {
           <li className={show3 ? "showMenu" : ""}>
             <div className="iocn-link">
               <NavLink to="/transaction/pending">
-                <i className="fa-solid fa-file-invoice-dollar"></i>
+                <i className="fa-solid fa-exchange"></i>
                 <span className="link_name">{t("text_transaction")}</span>
               </NavLink>
-              <i className="fa-solid fa-angle-down arrow" onClick={handleClick3}></i>
+              <i className="fa-solid fa-angle-down arrow tran" onClick={handleClick3}></i>
             </div>
             <ul className="sub-menu theme-border">
               <li>
@@ -174,7 +166,7 @@ const Sidebar = () => {
           {/* maintenance */}
           <li>
             <NavLink to="/maintenance">
-              <i className="fa-solid fa-coins"></i>
+              <i className="fa-solid fa-wrench"></i>
               <span className="link_name">{t("text_maintenance")}</span>
             </NavLink>
             <ul className="sub-menu blank">

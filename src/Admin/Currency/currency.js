@@ -10,11 +10,6 @@ const Currency = () => {
         TableDatatablesManaged.init();
     }, [])
 
-    // edit
-    function handleEdit(id) {
-        window.location.href = `/currency/edit/${id}`;
-    }
-
     // user transaction
     var TableDatatablesManaged = (function () {
         var initTable1 = function () {
@@ -52,13 +47,6 @@ const Currency = () => {
                     },
                 ],
                 destroy: true,
-            });
-            // edit
-            $("#currency tbody").on("click", "#edit-btn", function () {
-                var row = $(this).parents("tr")[0];
-                const id = table1.row(row).data().id;
-                console.log(id);
-                handleEdit(id);
             });
         };
         return {
