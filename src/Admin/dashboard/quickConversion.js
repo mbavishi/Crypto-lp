@@ -21,7 +21,7 @@ const QuickConversion = () => {
               <div className="col-lg-5 rate-option">
                 <input
                   type="text"
-                  id="wallet-coin-input"
+                  id="wallet-coin-input1"
                   name="wallet-coin-input"
                   value="0.1"
                   className="form-control text-center theme-input"
@@ -46,7 +46,7 @@ const QuickConversion = () => {
               <div className="col-lg-5 rate-option">
                 <input
                   type="text"
-                  id="wallet-coin-input"
+                  id="wallet-coin-input2"
                   name="wallet-coin-input"
                   value="0.1"
                   className="form-control text-center theme-input"

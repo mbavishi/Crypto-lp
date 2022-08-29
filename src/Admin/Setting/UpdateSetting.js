@@ -10,7 +10,7 @@ import Title from "../../common/title";
 import { connect } from "react-redux";
 import { t } from "i18next";
 
-const UpdateSetting = ({ dispatch, res, updateSett }) => {
+const UpdateSetting = ({ dispatch, res }) => {
   const navigate = useNavigate()
   //store the data of setting
   const [setting, setSetting] = useState({
@@ -22,17 +22,18 @@ const UpdateSetting = ({ dispatch, res, updateSett }) => {
     smtp_port: "",
     smtp_secure: "",
   });
+
   //get the setting data on page load
   useEffect(() => {
     dispatch(GetSettingData());
-  }, [dispatch]);
+  }, [dispatch, res]);
 
   useEffect(() => {
     !res.loading &&
       res.data.config_table.map((data) => {
         setting[data.lp_settings_name] = data.lp_settings_value;
       });
-  }, [res]);
+  }, [dispatch, res]);
 
   //chnage the data of setting
   const handleChange = (e) => {
@@ -266,7 +267,6 @@ const UpdateSetting = ({ dispatch, res, updateSett }) => {
 // redux connect
 const mapStateToProps = (state) => ({
   res: state.setting,
-  updateSett: state.updateSetting,
 });
 
 export default connect(mapStateToProps)(UpdateSetting);

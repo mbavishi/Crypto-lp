@@ -10,11 +10,6 @@ const Member = () => {
         TableDatatablesManaged.init();
     }, [])
 
-    // edit
-    function handleEdit(id) {
-        window.location.href = `/member/view/${id}`
-    }
-
     //receive status  user transaction
     var TableDatatablesManaged = (function () {
         var initTable1 = function () {
