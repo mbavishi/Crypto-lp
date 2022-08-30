@@ -100,6 +100,50 @@ html {
     transform: perspective(1px) translateZ(0);
 }
 
+/* Safari */
+@-webkit-keyframes spin {
+    0% {
+        -webkit-transform: rotate(0deg);
+    }
+
+    100% {
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.loader {
+    font-size: 10px;
+    border-top: .8em solid rgba(218, 219, 223, 1);
+    border-right: .8em solid rgba(218, 219, 223, 1);
+    border-bottom: .8em solid rgba(218, 219, 223, 1);
+    border-left: .8em solid var(--secondary-color);
+    left: 50%;
+    margin-left: -4em;
+    -webkit-animation: spin 2s linear infinite;
+    animation: spin 2s linear infinite;
+}
+
+.loader,
+.loader:after {
+    border-radius: 50%;
+    width: 8em;
+    height: 8em;
+    display: block;
+    position: absolute;
+    top: 50%;
+    margin-top: -4.05em;
+}
+
 .btn-add {
     font-size: 20px !important;
     padding: 5px 22px;

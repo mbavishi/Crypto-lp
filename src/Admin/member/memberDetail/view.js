@@ -16,8 +16,8 @@ const View = ({ dispatch, res }) => {
     return (
         <>
             {res.loading ? (
-                <div className="d-flex text-center justify-content-center mt-10">
-                    <Spinner animation="border" role="status" />
+                <div className="loader">
+                    <Spinner />
                 </div>
             ) : (
                 <div className="row adminform-row">

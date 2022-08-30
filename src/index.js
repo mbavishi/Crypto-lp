@@ -25,7 +25,7 @@ root.render(
       <ErrorBoundary FallbackComponent={ErrorHandler}>
         {/* Show a spinner while the app [data fetching] is loading */}
         <Web3ReactProvider>
-          <React.Suspense fallback={<Spinner />}>
+          <React.Suspense fallback={<div className="loader"><Spinner /></div>}>
             <App />
           </React.Suspense>
         </Web3ReactProvider>

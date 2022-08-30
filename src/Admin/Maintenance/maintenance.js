@@ -17,17 +17,29 @@ const Maintenance = ({ dispatch, res, updateSett }) => {
     const [setting, setSetting] = useState({
         maintenance_status: "",
         maintenance_message: "",
+        smtp_host: "",
+        smtp_user: "",
+        smtp_pass: "",
+        smtp_port: "",
+        smtp_secure: "",
     });
 
     //get the setting data on page load
     useEffect(() => {
         dispatch(GetSettingData());
     }, [dispatch]);
+
     useEffect(() => {
-        !res.loading &&
-            res.data.config_table.map((data) => {
-                setting[data.lp_settings_name] = data.lp_settings_value;
-            });
+        res.data.config_table &&
+            setSetting({
+                maintenance_status: res.data.config_table[8].lp_settings_value,
+                maintenance_message: res.data.config_table[9].lp_settings_value,
+                smtp_host: res.data.config_table[1].lp_settings_value,
+                smtp_user: res.data.config_table[3].lp_settings_value,
+                smtp_pass: res.data.config_table[4].lp_settings_value,
+                smtp_port: res.data.config_table[2].lp_settings_value,
+                smtp_secure: res.data.config_table[5].lp_settings_value,
+            })
     }, [res]);
 
     //chnage the data of setting
@@ -53,6 +65,7 @@ const Maintenance = ({ dispatch, res, updateSett }) => {
         console.log(update);
     }
     console.log(setting);
+
     return (
         <>
             <Title props={t("text_maintenance")} />
@@ -157,7 +170,6 @@ const Maintenance = ({ dispatch, res, updateSett }) => {
         </>
     )
 }
-
 
 // redux connect
 const mapStateToProps = (state) => ({

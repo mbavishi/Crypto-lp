@@ -48,8 +48,8 @@ const EditCurrencyPair = ({ dispatch, res, curr }) => {
       <Title props={t("text_edit_currency")} />
       <AdminTheme header={t("text_edit_currency")}>
         {curr.loading ? (
-          <div className="d-flex text-center justify-content-center mt-10">
-            <Spinner animation="border" role="status" />
+          <div className="loader">
+            <Spinner />
           </div>
         ) : (
           <>

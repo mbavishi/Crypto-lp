@@ -220,14 +220,14 @@ const Connection = ({ dispatch, res, fromCurre, toCurre, trans }) => {
           </div>
         </Modal.Body>
         <Modal.Footer>
-          <Button className="btn-secondary" onClick={handleClose}>
+          <Button className="btn-secondary btn-add" onClick={handleClose}>
             {t("btn_close")}
           </Button>
         </Modal.Footer>
       </Modal>
       {fromCurre.loading ? (
-        <div className="d-flex text-center justify-content-center mt-10">
-          <Spinner animation="border" role="status" />
+        <div className="loader">
+          <Spinner />
         </div>
       ) : (
         <>

@@ -26,14 +26,20 @@ const UpdateSetting = ({ dispatch, res }) => {
   //get the setting data on page load
   useEffect(() => {
     dispatch(GetSettingData());
-  }, [dispatch, res]);
+  }, [dispatch]);
 
   useEffect(() => {
-    !res.loading &&
-      res.data.config_table.map((data) => {
-        setting[data.lp_settings_name] = data.lp_settings_value;
-      });
-  }, [dispatch, res]);
+    res.data.config_table &&
+      setSetting({
+        maintenance_status: res.data.config_table[8].lp_settings_value,
+        maintenance_message: res.data.config_table[9].lp_settings_value,
+        smtp_host: res.data.config_table[1].lp_settings_value,
+        smtp_user: res.data.config_table[3].lp_settings_value,
+        smtp_pass: res.data.config_table[4].lp_settings_value,
+        smtp_port: res.data.config_table[2].lp_settings_value,
+        smtp_secure: res.data.config_table[5].lp_settings_value,
+      })
+  }, [res]);
 
   //chnage the data of setting
   const handleChange = (e) => {
@@ -53,8 +59,8 @@ const UpdateSetting = ({ dispatch, res }) => {
       <Title props={t("text_setting")} />
       <AdminTheme header={t("text_setting")}>
         {res.loading ? (
-          <div className="d-flex text-center justify-content-center mt-10">
-            <Spinner animation="border" role="status" />
+          <div className="loader">
+            <Spinner />
           </div>
         ) : (
           <>

@@ -1,5 +1,4 @@
 import { React, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
 import AdminTheme from '../theme/AdminTheme';
 import Title from '../../common/title';
 import { t } from 'i18next';
