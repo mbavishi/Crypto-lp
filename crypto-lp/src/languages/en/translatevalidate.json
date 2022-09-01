@@ -1,0 +1,23 @@
+{
+    "err_name_req": "please enter name",
+    "err_user_name_req": "please enter username",
+    "err_first_name_req": "please enter firstname",
+    "err_last_name_req": "please enter lastname",
+    "err_password_req": "please enter password",
+    "err_email_req": "please enter email",
+    "err_otp_req": "please enter OTP",
+    "err_old_password_req": "please enter old password",
+    "err_new_password_req": "please enter new password",
+    "err_c_passowrd_req": "Please enter confirm password",
+    "err_password_min": "Please enter minimum 6 character",
+    "err_c_passowrd_equal": "New password & confirm password not match",
+    "err_to_curr_req": "please select To Currency",
+    "err_from_curr_req": "please select From Currency",
+    "err_curr_code_req": "please enter currency code",
+    "err_img_req": "please select image",
+    "err_contract_add_req": "please enter contract address",
+    "err_abi_key_req": "please enter abi key",
+    "err_decimal_point_req": "please enter decimal point",
+    "err_private_key_req": "please enter private key",
+    "err_receive_wallet_add_req": "please enter receive wallet address"
+}
