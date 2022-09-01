@@ -51,14 +51,16 @@ const UpdateSetting = ({ dispatch, res }) => {
     setSetting({
       ...setting,
       [name]: value,
-    });
-  };
+    })
+  }
+
   const handleEditor = (data) => {
     setSetting({
       ...setting,
       copyright_text: data
     })
   }
+
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(UpdateSettingData(setting));

@@ -178,6 +178,21 @@ export function CurrencyData() {
     dispatch(return_response);
   };
 }
+
+//  setting data
+export function DefaultLogin() {
+  return async (dispatch) => {
+    var response = await fetch(`/api/default_login`);
+    var res_data = await response.json();
+    console.log(res_data);
+    var return_response = {
+      type: "DEFAULT_LOGIN",
+      payload: res_data,
+    };
+    dispatch(return_response);
+  };
+}
+
 //  setting data
 export function SettingData() {
   return async (dispatch) => {

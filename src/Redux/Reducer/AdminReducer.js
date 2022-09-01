@@ -99,6 +99,16 @@ export function GetCurrReducer(state = initialState, action) {
   }
 }
 
+// defaulf login
+export function DefaultLoginReducer(state = initialState, action) {
+  switch (action.type) {
+    case "DEFAULT_LOGIN":
+      return { data: action.payload, loading: false };
+    default:
+      return state;
+  }
+}
+
 //setting data
 export function SettingDataReducer(state = initialState, action) {
   switch (action.type) {

@@ -16,4 +16,4 @@ const CkEditor = ({ props, handleEditor }) => {
     )
 }
 
-export default CkEditor
+export default CkEditor;

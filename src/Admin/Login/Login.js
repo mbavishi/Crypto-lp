@@ -1,6 +1,6 @@
 import { React, useEffect, useState } from "react";
+import { ResetPsd, DefaultLogin } from "../../Redux/Action/AdminData";
 import { useNavigate, useLocation } from "react-router-dom";
-import { ResetPsd } from "../../Redux/Action/AdminData";
 import UserTheme from "../../User/theme/userTheme";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
@@ -10,7 +10,7 @@ import { connect } from "react-redux";
 import Footer from "../theme/footer";
 import { t } from "i18next";
 
-const Login = ({ dispatch, resetPsd, updatePsd }) => {
+const Login = ({ dispatch, resetPsd, updatePsd, resDefaultLogin }) => {
   const history = useNavigate();
   const location = useLocation();
 
@@ -20,9 +20,15 @@ const Login = ({ dispatch, resetPsd, updatePsd }) => {
     password: "",
   });
 
-  var val = 0;
   useEffect(() => {
-    if (val == 0) {
+    dispatch(DefaultLogin());
+  }, [dispatch])
+  const data = resDefaultLogin.data;
+
+  var val = data.admin && data.admin[0].default_login;
+  useEffect(() => {
+    console.log(val);
+    if (val === "1") {
       setLoginData(
         {
           username: "admin",
@@ -406,6 +412,7 @@ const Login = ({ dispatch, resetPsd, updatePsd }) => {
 // redux connect
 const mapStateToProps = (state) => ({
   resetPsd: state.resetPsd,
+  resDefaultLogin: state.DefaultLogin,
 });
 
 export default connect(mapStateToProps)(Login);

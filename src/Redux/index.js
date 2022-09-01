@@ -1,6 +1,7 @@
 import { combineReducers } from "redux";
 import { currencyFromReducer, currencyToReducer, transactionReducer, userWalletConnReducer } from "./Reducer/FetchReducer";
 import {
+    DefaultLoginReducer,
     AddCurrPairReducer,
     AddCurrReducer,
     CurrPairStatusReducer,
@@ -20,6 +21,7 @@ import {
 
 
 const rootReducer = combineReducers({
+    DefaultLogin: DefaultLoginReducer,
     userWallet: userWalletConnReducer,
     fromCurr: currencyFromReducer,
     toCurr: currencyToReducer,
