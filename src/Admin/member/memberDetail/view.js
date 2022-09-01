@@ -37,7 +37,7 @@ const View = ({ dispatch, res }) => {
                                         type="text"
                                         className="form-control theme-input"
                                         id="userid"
-                                        placeholder="Enter smtp host"
+                                        placeholder="Enter User ID"
                                         name="userid"
                                         value={data.users[0].user_id}
                                         readOnly={true}
@@ -66,7 +66,7 @@ const View = ({ dispatch, res }) => {
                                         type="text"
                                         className="form-control theme-input"
                                         id="address"
-                                        placeholder="Enter smtp host"
+                                        placeholder="Enter Smtp host"
                                         name="address"
                                         value={data.users[0].wallet_address}
                                         readOnly={true}
@@ -81,7 +81,7 @@ const View = ({ dispatch, res }) => {
                                         type="text"
                                         className="form-control theme-input"
                                         id="date"
-                                        placeholder="Enter smtp host"
+                                        placeholder="Enter Join Date"
                                         name="date"
                                         value={data.users[0].created_at}
                                         readOnly={true}
