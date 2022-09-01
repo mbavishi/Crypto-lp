@@ -30,7 +30,7 @@ const PassUpdate = () => {
     function handleFormValidation() {
         const { old_password, new_password, c_password } = psdData;
         let formErrors = {};
-        let formIsValid = true;
+        let formIsValid = false;
         if (!old_password) {
             formIsValid = true;
             formErrors["oldpassErr"] = t("translation2:err_old_password_req");
@@ -68,20 +68,22 @@ const PassUpdate = () => {
     // update the profile data
     const handleSubmit = async (e) => {
         e.preventDefault();
-        handleFormValidation();
-        var response = await fetch(`/api/change_pass/${user.id}`, {
-            method: "POST",
-            headers: {
-                "Content-type": "application/json",
-            },
-            body: JSON.stringify(psdData),
-        });
-        var res_data = await response.json();
-        if (res_data.status == true) {
-            toast.success(res_data.message)
-        }
-        else {
-            console.log(res_data);
+        let error = handleFormValidation();
+        if (!error) {
+            var response = await fetch(`/api/change_pass/${user.id}`, {
+                method: "POST",
+                headers: {
+                    "Content-type": "application/json",
+                },
+                body: JSON.stringify(psdData),
+            });
+            var res_data = await response.json();
+            if (res_data.status == true) {
+                toast.success(res_data.message)
+            }
+            else {
+                toast.error(res_data.message)
+            }
         }
     };
 

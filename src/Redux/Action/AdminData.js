@@ -7,8 +7,8 @@ const notifyMess = (data) => {
     toast.success(data.message);
   }
   else {
-    toast.error(data.message)
-    console.log(data.message);
+    toast.error(data.message);
+    // console.log(data.message);
   }
 };
 

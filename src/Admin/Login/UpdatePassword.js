@@ -48,10 +48,11 @@ const UpdatePassword = ({ dispatch, update }) => {
   //update the password on click update button
   const handleSubmit = () => {
     let error = handleFormValidation()
-    // !error && dispatch(updatePsd(passwordData));
+    !error && dispatch(updatePsd(passwordData));
   };
 
   useEffect(() => {
+    console.log(update);
     if (update.data.status === true) {
       navigate("/admin", {
         state: {
