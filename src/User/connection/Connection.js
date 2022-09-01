@@ -59,10 +59,8 @@ const Connection = ({ dispatch, res, fromCurre, toCurre, trans }) => {
     dispatch(toCurrency(1));
   }, [dispatch]);
   var fromCur = fromCurre.data;
-  console.log("fromCur", fromCur);
 
   // const toCur =fromCurr.data
-  // console.log("to",toCur);
 
   //check meta mask extension or not
   const detectProvider = () => {
@@ -251,7 +249,8 @@ const Connection = ({ dispatch, res, fromCurre, toCurre, trans }) => {
                 </NavLink>
               </header>
             </div>
-            <section className="cryptocalculator-section">
+            {/* <section className="cryptocalculator-section"> */}
+            <section>
               <div className="container">
                 <div className="row">
                   <div className="col-lg-5 crypto-col">

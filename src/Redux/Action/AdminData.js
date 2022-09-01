@@ -179,7 +179,7 @@ export function CurrencyData() {
   };
 }
 
-//  setting data
+// default login
 export function DefaultLogin() {
   return async (dispatch) => {
     var response = await fetch(`/api/default_login`);

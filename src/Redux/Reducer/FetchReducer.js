@@ -15,7 +15,7 @@ export function userWalletConnReducer(state = initialState, action) {
   }
 }
 
-//from currency data
+// from currency data
 export function currencyFromReducer(state = initialState, action) {
   switch (action.type) {
     case "FROM_CURRENCY_DATA":
@@ -25,7 +25,7 @@ export function currencyFromReducer(state = initialState, action) {
   }
 }
 
-//to currency data
+// to currency data
 export function currencyToReducer(state = initialState, action) {
   switch (action.type) {
     case "TO_CURRENCY_DATA":
@@ -35,7 +35,7 @@ export function currencyToReducer(state = initialState, action) {
   }
 }
 
-//transaction data
+// transaction data
 export function transactionReducer(state = initialState, action) {
   switch (action.type) {
     case "ADD_TRANSACTION_DATA":
