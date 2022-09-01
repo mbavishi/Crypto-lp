@@ -260,7 +260,7 @@ const UpdateSetting = ({ dispatch, res }) => {
                             </label>
                           </div>
                           {/* no */}
-                          <div className="custom-control custom-radio custom-control-inline">
+                          <div className="custom-control custom-radio custom-control-inline ps-3">
                             <input
                               id="under_maintenance_no"
                               name="maintenance_status"

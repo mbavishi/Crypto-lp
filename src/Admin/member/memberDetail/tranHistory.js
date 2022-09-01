@@ -106,4 +106,4 @@ const TranHistory = () => {
     )
 }
 
-export default TranHistory
+export default TranHistory;

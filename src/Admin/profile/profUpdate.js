@@ -12,6 +12,7 @@ const ProfUpdate = () => {
         last_name: user.last_name,
         email: user.email,
     });
+
     //handle the validation
     const [state1, setState1] = useState({
         formErrors: {},
@@ -83,7 +84,7 @@ const ProfUpdate = () => {
                                 type="text"
                                 className="form-control theme-input"
                                 id="username"
-                                placeholder="Enter username"
+                                placeholder="Enter Username"
                                 name="username"
                                 value={userData.username}
                                 onChange={handleChange}
@@ -102,7 +103,7 @@ const ProfUpdate = () => {
                                 type="text"
                                 className="form-control theme-input"
                                 id="firstname"
-                                placeholder="Enter firstname"
+                                placeholder="Enter Firstname"
                                 name="first_name"
                                 value={userData.first_name}
                                 onChange={handleChange}
@@ -129,7 +130,7 @@ const ProfUpdate = () => {
                                 type="text"
                                 className="form-control theme-input"
                                 id="lastname"
-                                placeholder="Enter lastname"
+                                placeholder="Enter Lastname"
                                 name="last_name"
                                 value={userData.last_name}
                                 onChange={handleChange}
@@ -191,4 +192,4 @@ const ProfUpdate = () => {
     )
 }
 
-export default ProfUpdate
+export default ProfUpdate;
