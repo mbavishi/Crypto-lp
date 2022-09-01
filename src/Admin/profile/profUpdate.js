@@ -108,7 +108,7 @@ const ProfUpdate = () => {
                                 onChange={handleChange}
                             />
                             <label
-                                htmlFor="first_name"
+                                htmlFor="firstname"
                                 generated="true"
                                 className={
                                     "error " +
@@ -135,7 +135,7 @@ const ProfUpdate = () => {
                                 onChange={handleChange}
                             />
                             <label
-                                htmlFor="last_name"
+                                htmlFor="lastname"
                                 generated="true"
                                 className={
                                     "error " +

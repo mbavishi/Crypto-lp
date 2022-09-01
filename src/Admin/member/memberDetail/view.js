@@ -50,8 +50,8 @@ const View = ({ dispatch, res }) => {
                                     </label>
                                     <div>
                                         {data.users[0].status == 1 ?
-                                            <span class='btn btn-primary active-btn'>{t("text_active")}</span> :
-                                            <span class='btn btn-primary inactive-btn'>{t("text_deactive")}</span>
+                                            <span className='btn btn-primary active-btn'>{t("text_active")}</span> :
+                                            <span className='btn btn-primary inactive-btn'>{t("text_deactive")}</span>
                                         }
                                     </div>
                                 </div>

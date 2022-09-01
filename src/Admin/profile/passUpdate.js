@@ -13,12 +13,12 @@ const PassUpdate = () => {
         c_password: "",
     });
 
-    //handle the validation
+    // handle the validation
     const [state1, setState1] = useState({
         formErrors: {},
     });
 
-    //handle the password
+    // handle the password
     const handlePassword = (e) => {
         const { name, value } = e.target;
         setPsdData({
@@ -27,6 +27,7 @@ const PassUpdate = () => {
         });
     };
 
+    // form validation
     function handleFormValidation() {
         const { old_password, new_password, c_password } = psdData;
         let formErrors = {};
@@ -192,4 +193,4 @@ const PassUpdate = () => {
     )
 }
 
-export default PassUpdate
+export default PassUpdate;

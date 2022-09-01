@@ -6,6 +6,7 @@ import { t } from 'i18next';
 
 const ApuRate = () => {
     const navigate = useNavigate();
+
     return (
         <>
             <Title props={t("text_apu_rate")} />
