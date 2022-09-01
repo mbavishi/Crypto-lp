@@ -1,8 +1,15 @@
-import React from "react";
+import { React, useEffect } from "react";
+import { GetSettingData } from "../../Redux/Action/AdminData";
 import { NavLink } from "react-router-dom";
-import Logo from "../../assets/images/Lunchpad Logo.png";
+import { connect } from "react-redux";
 
-const UserTheme = (props) => {
+const UserTheme = ({ dispatch, res, children }) => {
+  useEffect(() => {
+    dispatch(GetSettingData());
+  }, [dispatch]);
+  const data = res.data;
+  const logo = data.config_table && data.config_table[11].lp_settings_value;
+
   return (
     <>
       {/* logo */}
@@ -12,7 +19,7 @@ const UserTheme = (props) => {
             <div className="col-lg-12 text-left mt-5 text-md-center center-text logo-spacing">
               <NavLink to="/">
                 <img
-                  src={Logo}
+                  src={logo}
                   alt="logo"
                   className="img-fluid"
                   width="165"
@@ -24,22 +31,18 @@ const UserTheme = (props) => {
         </div>
       </section>
       {/* main-part */}
-      {props.header ? (
-        <div className="row">
-          <div className="col-md-10 mx-auto mt-3">
-            <div className="row main-title">
-              <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                <h3>{props.header}</h3>
-              </div>
-            </div>
-            {props.children}
-          </div>
+      <div className="row">
+        <div className="col-md-10 mx-auto mt-3">
+          {children}
         </div>
-      ) : (
-        props.children
-      )}
+      </div>
     </>
   );
 };
 
-export default UserTheme;
+// redux connect
+const mapStateToProps = (state) => ({
+  res: state.setting,
+});
+
+export default connect(mapStateToProps)(UserTheme);

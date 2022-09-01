@@ -1,13 +1,13 @@
 import { React, useEffect, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { ResetPsd } from "../../Redux/Action/AdminData";
-import Footer from "../theme/footer";
 import UserTheme from "../../User/theme/userTheme";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import { toast } from "react-toastify";
 import Title from "../../common/title";
 import { connect } from "react-redux";
+import Footer from "../theme/footer";
 import { t } from "i18next";
 
 const Login = ({ dispatch, resetPsd, updatePsd }) => {
@@ -220,7 +220,7 @@ const Login = ({ dispatch, resetPsd, updatePsd }) => {
                 </label>
                 <input
                   name="email"
-                  type="text"
+                  type="email"
                   className="form-control theme-input text-dark"
                   placeholder="email address"
                   onChange={handleEmail}
