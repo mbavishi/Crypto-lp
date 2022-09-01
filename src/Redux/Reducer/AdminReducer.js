@@ -34,6 +34,7 @@ export function ProfileUpdateReducer(state = initialState, action) {
       return state;
   }
 }
+
 //password update data
 export function PassUpdateReducer(state = initialState, action) {
   switch (action.type) {
@@ -43,6 +44,7 @@ export function PassUpdateReducer(state = initialState, action) {
       return state;
   }
 }
+
 //add new currency data
 export function AddCurrReducer(state = initialState, action) {
   switch (action.type) {
@@ -52,6 +54,7 @@ export function AddCurrReducer(state = initialState, action) {
       return state;
   }
 }
+
 //update currency data
 export function UpdateCurrReducer(state = initialState, action) {
   switch (action.type) {
@@ -71,7 +74,8 @@ export function AddCurrPairReducer(state = initialState, action) {
       return state;
   }
 }
-//update currency  pair data
+
+//update currency pair data
 export function UpdateCurrPairReducer(state = initialState, action) {
   switch (action.type) {
     case "EDIT_CURR_PAIR_DATA":
@@ -80,7 +84,8 @@ export function UpdateCurrPairReducer(state = initialState, action) {
       return state;
   }
 }
-//update currency  pair data
+
+//update currency pair data
 export function CurrReducer(state = initialState, action) {
   switch (action.type) {
     case "CURR_DATA":
@@ -89,7 +94,8 @@ export function CurrReducer(state = initialState, action) {
       return state;
   }
 }
-//update currency  id wise
+
+//update currency id wise
 export function GetCurrReducer(state = initialState, action) {
   switch (action.type) {
     case "GET_CURR_DATA":
@@ -119,7 +125,7 @@ export function SettingDataReducer(state = initialState, action) {
   }
 }
 
-//update currency  pair data
+// setting data
 export function SettingReducer(state = initialState, action) {
   switch (action.type) {
     case "SETTING_DATA":
@@ -129,7 +135,7 @@ export function SettingReducer(state = initialState, action) {
   }
 }
 
-//update currency  pair data
+// update setting data
 export function UpdateSettingReducer(state = initialState, action) {
   switch (action.type) {
     case "EDIT_SETTING_DATA":
@@ -138,7 +144,8 @@ export function UpdateSettingReducer(state = initialState, action) {
       return state;
   }
 }
-//delete currency data
+
+// delete currency data
 export function DeleteCurrReducer(state = initialState, action) {
   switch (action.type) {
     case "DELETE_CURR_DATA":
@@ -146,7 +153,9 @@ export function DeleteCurrReducer(state = initialState, action) {
     default:
       return state;
   }
-}   //delete currency  pair data
+}
+
+// delete currency pair data
 export function DeleteCurrPairReducer(state = initialState, action) {
   switch (action.type) {
     case "DELETE_CURR_PAIR_DATA":
@@ -156,7 +165,7 @@ export function DeleteCurrPairReducer(state = initialState, action) {
   }
 }
 
-//change currency status  data
+//change currency status
 export function CurrStatusReducer(state = initialState, action) {
   switch (action.type) {
     case "CHANGE_CURR_STATUS":
@@ -165,7 +174,8 @@ export function CurrStatusReducer(state = initialState, action) {
       return state;
   }
 }
-//change currency  pair status data
+
+//change currency pair status data
 export function CurrPairStatusReducer(state = initialState, action) {
   switch (action.type) {
     case "CHANGE_CURR_PAIR_STATUS":
@@ -174,6 +184,7 @@ export function CurrPairStatusReducer(state = initialState, action) {
       return state;
   }
 }
+
 //member details
 export function MemberDetailsReducer(state = initialState, action) {
   switch (action.type) {

@@ -9,6 +9,7 @@ const notify = (data) => {
     toast.error(data.title);
   }
 };
+
 const notifyMess = (data) => {
   if (data.status === true) {
     toast.success(data.message);

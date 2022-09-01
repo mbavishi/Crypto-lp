@@ -19,7 +19,6 @@ import {
     UpdateCurrPairReducer, UpdateCurrReducer, UpdatePsdReducer, UpdateSettingReducer
 } from "./Reducer/AdminReducer";
 
-
 const rootReducer = combineReducers({
     DefaultLogin: DefaultLoginReducer,
     userWallet: userWalletConnReducer,

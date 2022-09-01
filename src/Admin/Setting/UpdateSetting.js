@@ -110,7 +110,7 @@ const UpdateSetting = ({ dispatch, res }) => {
                           type="text"
                           className="form-control theme-input"
                           id="smtp_host"
-                          placeholder="Enter smtp host"
+                          placeholder="Enter Smtp Host"
                           name="smtp_host"
                           value={setting.smtp_host}
                           onChange={handleChange}
@@ -125,7 +125,7 @@ const UpdateSetting = ({ dispatch, res }) => {
                           type="text"
                           className="form-control theme-input"
                           id="smtp_port"
-                          placeholder="Enter smtp port"
+                          placeholder="Enter Smtp Port"
                           name="smtp_port"
                           value={setting.smtp_port}
                           onChange={handleChange}
@@ -140,7 +140,7 @@ const UpdateSetting = ({ dispatch, res }) => {
                           type="text"
                           className="form-control theme-input"
                           id="smtp_user"
-                          placeholder="Enter smtp user"
+                          placeholder="Enter Smtp User"
                           name="smtp_user"
                           value={setting.smtp_user}
                           onChange={handleChange}
@@ -157,7 +157,7 @@ const UpdateSetting = ({ dispatch, res }) => {
                           type="text"
                           className="form-control theme-input"
                           id="smtp_pass"
-                          placeholder="Enter smtp pass"
+                          placeholder="Enter Smtp Password"
                           name="smtp_pass"
                           value={setting.smtp_pass}
                           onChange={handleChange}

@@ -4,6 +4,7 @@ export const initialState = {
   data: {},
   loading: true,
 };
+
 // Wallet connect 
 export function userWalletConnReducer(state = initialState, action) {
   switch (action.type) {
@@ -13,6 +14,7 @@ export function userWalletConnReducer(state = initialState, action) {
       return state;
   }
 }
+
 //from currency data
 export function currencyFromReducer(state = initialState, action) {
   switch (action.type) {
@@ -22,6 +24,7 @@ export function currencyFromReducer(state = initialState, action) {
       return state;
   }
 }
+
 //to currency data
 export function currencyToReducer(state = initialState, action) {
   switch (action.type) {
@@ -31,6 +34,7 @@ export function currencyToReducer(state = initialState, action) {
       return state;
   }
 }
+
 //transaction data
 export function transactionReducer(state = initialState, action) {
   switch (action.type) {

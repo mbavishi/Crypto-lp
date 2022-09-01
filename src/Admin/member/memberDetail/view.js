@@ -66,7 +66,7 @@ const View = ({ dispatch, res }) => {
                                         type="text"
                                         className="form-control theme-input"
                                         id="address"
-                                        placeholder="Enter Smtp host"
+                                        placeholder="Enter Smtp Host"
                                         name="address"
                                         value={data.users[0].wallet_address}
                                         readOnly={true}
