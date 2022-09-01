@@ -1,23 +1,23 @@
 <?php
 
 /*
-  |--------------------------------------------------------------------------
-  | Application Routes
-  |--------------------------------------------------------------------------
-  |
-  | Here is where you can register all of the routes for an application.
-  | It is a breeze. Simply tell Lumen the URIs it should respond to
-  | and give it the Closure to call when that URI is requested.
-  |
+|--------------------------------------------------------------------------
+| Application Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register all of the routes for an application.
+| It is a breeze. Simply tell Lumen the URIs it should respond to
+| and give it the Closure to call when that URI is requested.
+|
  */
 
 $router->get('/', function () use ($router) {
     return $router->app->version();
 });
-$router->group(['prefix' => '','middleware' => 'lang'], function () use ($router) {
-   
+$router->group(['prefix' => '', 'middleware' => 'lang'], function () use ($router) {
+
     $router->get('default_login', 'ManageApiController@defualtLogin');
-    $router->post('adminlogin', 'ManageApiController@authenticate');  
+    $router->post('adminlogin', 'ManageApiController@authenticate');
     $router->post('sendotp', 'ManageApiController@adminSendOtp');
     $router->post('pass_update', 'ManageApiController@changeForgotPassword');
     $router->post('user_wallet_conn', 'ManageApiController@getUserwallteData');
@@ -47,8 +47,4 @@ $router->group(['prefix' => '','middleware' => 'lang'], function () use ($router
     $router->get('view_mem_data/{user_id}', 'ManageApiController@viewMemberDetails');
     $router->get('setting_data', 'ManageApiController@getSettingData');
 
-
 });
-
-
-

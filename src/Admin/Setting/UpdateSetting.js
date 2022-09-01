@@ -47,7 +47,9 @@ const UpdateSetting = ({ dispatch, res }) => {
 
   //chnage the data of setting
   const handleChange = (e) => {
-    const { name, value } = e.target;
+    const { name } = e.target;
+    if (name === "company_logo") var value = e.target.files[0];
+    else value = e.target.value;
     setSetting({
       ...setting,
       [name]: value,
@@ -63,7 +65,19 @@ const UpdateSetting = ({ dispatch, res }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(UpdateSettingData(setting));
+    console.log(setting);
+    // const errorValue = handleFormValidation();
+    const formData = new FormData();
+    formData.append("maintenance_status", setting.maintenance_status);
+    formData.append("maintenance_message", setting.maintenance_message);
+    formData.append("smtp_host", setting.smtp_host);
+    formData.append("smtp_user", setting.smtp_user);
+    formData.append("smtp_pass", setting.smtp_pass);
+    formData.append("smtp_port", setting.smtp_port);
+    formData.append("smtp_secure", setting.smtp_secure);
+    formData.append("copyright_text", setting.copyright_text);
+    formData.append("company_logo", setting.company_logo ? setting.company_logo : "");
+    dispatch(UpdateSettingData(formData));
   };
 
   return (
@@ -277,6 +291,22 @@ const UpdateSetting = ({ dispatch, res }) => {
                       <h5>{t("text_web_settings")}</h5>
                     </div>
                     <div className="row admin-input-spacing">
+                      <div className="form-group col-md-12">
+                        <label htmlFor="company_logo" className="form-label text-white">
+                          {t("text_company_logo")}
+                        </label>
+                        <input
+                          type="file"
+                          className="form-control theme-input admin-input-spacing"
+                          id="company_logo"
+                          name="company_logo"
+                          onChange={handleChange}
+                        />
+                        <p className="text-white">
+                          <b>{t("text_note")} : </b>&nbsp;
+                          {t("text_image_note_100x100")}
+                        </p>
+                      </div>
                       <div className="form-group col-md-12">
                         <label htmlFor="copyright" className="form-label text-white">
                           {t("text_copyrights")}

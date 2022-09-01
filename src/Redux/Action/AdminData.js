@@ -224,10 +224,7 @@ export function UpdateSettingData(data) {
   return async (dispatch) => {
     var response = await fetch(`/api/update_settings_data`, {
       method: "POST",
-      headers: {
-        "Content-type": "application/json",
-      },
-      body: JSON.stringify(data),
+      body: data,
     });
     var res_data = await response.json();
     notifyMess(res_data);
