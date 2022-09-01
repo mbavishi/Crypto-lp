@@ -96,6 +96,7 @@ const UpdateSetting = ({ dispatch, res }) => {
                     <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
                       <h3 className="breadcrumb-title">{t("text_setting")}</h3>
                     </div>
+                    {/* smtp setting */}
                     <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 pt-4">
                       <h5>{t("text_smtp_settings")}</h5>
                     </div>
@@ -237,7 +238,7 @@ const UpdateSetting = ({ dispatch, res }) => {
                           {t("text_maintenance_message")}
                         </label>
                         <div className="form-group col-md-12 d-flex">
-                          {/* yes */}
+                          {/* Yes */}
                           <div className="custom-control custom-radio custom-control-inline">
                             <input
                               id="under_maintenance_yes"
@@ -258,7 +259,7 @@ const UpdateSetting = ({ dispatch, res }) => {
                               Yes
                             </label>
                           </div>
-                          {/* no */}
+                          {/* No */}
                           <div className="custom-control custom-radio custom-control-inline ps-3">
                             <input
                               id="under_maintenance_no"
