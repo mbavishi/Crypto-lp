@@ -54,7 +54,6 @@ const AddCurrencyPair = ({ dispatch, res, curr }) => {
     dispatch(AddCurrencyPairData(currency));
   };
   const add = res.data;
-  console.log(add);
 
   //get the data of currency on load
   useEffect(() => {

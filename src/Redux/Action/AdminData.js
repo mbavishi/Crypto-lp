@@ -184,7 +184,6 @@ export function DefaultLogin() {
   return async (dispatch) => {
     var response = await fetch(`/api/default_login`);
     var res_data = await response.json();
-    console.log(res_data);
     var return_response = {
       type: "DEFAULT_LOGIN",
       payload: res_data,

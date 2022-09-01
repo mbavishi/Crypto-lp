@@ -64,7 +64,6 @@ const Maintenance = ({ dispatch, res, updateSett }) => {
     else {
         console.log(update);
     }
-    console.log(setting);
 
     return (
         <>

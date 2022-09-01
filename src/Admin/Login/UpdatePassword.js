@@ -52,7 +52,6 @@ const UpdatePassword = ({ dispatch, update }) => {
   };
 
   useEffect(() => {
-    console.log(update);
     if (update.data.status === true) {
       navigate("/admin", {
         state: {

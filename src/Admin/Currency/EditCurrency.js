@@ -108,7 +108,6 @@ const EditCurrency = ({ dispatch, res }) => {
   // update the curruncy data
   const handleUpdate = (e) => {
     e.preventDefault();
-    console.log(userData.image);
     const formData = new FormData();
     const errorValue = handleFormValidation();
     formData.append("name", userData.name);

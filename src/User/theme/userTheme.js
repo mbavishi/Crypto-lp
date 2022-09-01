@@ -8,7 +8,6 @@ const UserTheme = ({ dispatch, res, children }) => {
     dispatch(SettingData());
   }, [dispatch]);
   const data = res.data;
-  console.log(data);
   const logo = data.company_logo;
 
   return (

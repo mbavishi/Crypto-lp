@@ -27,7 +27,6 @@ const Login = ({ dispatch, resetPsd, resDefaultLogin }) => {
 
   var val = data.admin && data.admin[0].default_login;
   useEffect(() => {
-    console.log(val);
     if (val === "1") {
       setLoginData(
         {
@@ -129,7 +128,6 @@ const Login = ({ dispatch, resetPsd, resDefaultLogin }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const errorValue = handleFormValidation();
-    // handleFormValidation();
     if (!errorValue) {
       var response = await fetch("/api/adminlogin", {
         method: "POST",
@@ -190,7 +188,6 @@ const Login = ({ dispatch, resetPsd, resDefaultLogin }) => {
       ...loginData,
       [name]: value,
     });
-    console.log(otpData);
   };
 
   //compare the otp

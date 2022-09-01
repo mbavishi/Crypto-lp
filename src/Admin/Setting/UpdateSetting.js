@@ -65,8 +65,6 @@ const UpdateSetting = ({ dispatch, res }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(setting);
-    // const errorValue = handleFormValidation();
     const formData = new FormData();
     formData.append("maintenance_status", setting.maintenance_status);
     formData.append("maintenance_message", setting.maintenance_message);

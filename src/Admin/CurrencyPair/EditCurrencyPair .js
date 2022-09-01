@@ -35,7 +35,6 @@ const EditCurrencyPair = ({ dispatch, res, curr }) => {
     dispatch(EditCurrencyPairData(currency, params.id));
   };
   const editCurr = res;
-  console.log(editCurr);
 
   //get the data of currency on load
   useEffect(() => {
