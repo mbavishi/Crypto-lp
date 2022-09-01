@@ -98,6 +98,17 @@ export function GetCurrReducer(state = initialState, action) {
       return state;
   }
 }
+
+//setting data
+export function SettingDataReducer(state = initialState, action) {
+  switch (action.type) {
+    case "SETTING":
+      return { data: action.payload, loading: false };
+    default:
+      return state;
+  }
+}
+
 //update currency  pair data
 export function SettingReducer(state = initialState, action) {
   switch (action.type) {
@@ -106,7 +117,9 @@ export function SettingReducer(state = initialState, action) {
     default:
       return state;
   }
-}   //update currency  pair data
+}
+
+//update currency  pair data
 export function UpdateSettingReducer(state = initialState, action) {
   switch (action.type) {
     case "EDIT_SETTING_DATA":

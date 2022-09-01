@@ -178,6 +178,18 @@ export function CurrencyData() {
     dispatch(return_response);
   };
 }
+//  setting data
+export function SettingData() {
+  return async (dispatch) => {
+    var response = await fetch(`/api/setting_data`);
+    var res_data = await response.json();
+    var return_response = {
+      type: "SETTING",
+      payload: res_data,
+    };
+    dispatch(return_response);
+  };
+}
 
 // get setting data
 export function GetSettingData() {

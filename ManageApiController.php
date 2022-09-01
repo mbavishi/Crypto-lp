@@ -28,6 +28,8 @@ class ManageApiController extends Controller {
 
         $this->base_url = env('APP_URL');
         $this->currency_image_array = array(100=>100, 30=>30);
+        $this->company_img_size_array = array(100 => 100, 40 => 40);
+        $this->company_favicon_img_size_array = array(100 => 100, 40 => 40);
 
         $data = DB::table('lp_settings')
                 ->get();
@@ -64,6 +66,22 @@ class ManageApiController extends Controller {
         list($usec, $sec) = explode(" ", microtime());
         list($trash, $usec) = explode(".", $usec);
         return (date("YmdHis") . substr(($sec + $usec), -10) . '_');
+    }
+
+    public function getSettingData()
+    {
+        $settings_data = DB::table('lp_settings')->select('lp_settings_name', 'lp_settings_value')->get();
+        $data = [];
+        foreach ($settings_data as $key) {
+            $data[$key->lp_settings_name] = $key->lp_settings_value;
+        }
+
+        if ($data['company_logo'] && $data['company_favicon']) {
+            $data['company_logo'] = $this->base_url . '/uploads/company_logo/thumb/100x100_' . $this->system_config['company_logo'];
+            $data['company_favicon'] = $this->base_url . '/uploads/company_favicon/thumb/100x100_' . $this->system_config['company_favicon'];
+        }
+       
+        echo json_encode($data, JSON_UNESCAPED_UNICODE);exit;
     }
 
     public function viewMemberDetails($user_id)
@@ -384,6 +402,10 @@ class ManageApiController extends Controller {
             'smtp_pass' => 'required',
             'smtp_port' => 'required',
             'smtp_secure' => 'required',
+            'copyright_text' => 'required',
+            'company_logo' => 'mimes:jpg,jpeg,png|max:2000000',
+            'company_favicon' => 'mimes:jpg,jpeg,png|max:2000000',
+            
         ],[
             'maintenance_status.required' => trans('message.err_main_status_req'),
             'maintenance_message.required' => trans('message.err_main_msg_req'),
@@ -392,6 +414,11 @@ class ManageApiController extends Controller {
             'smtp_pass.required' => trans('message.err_smtp_pass_req'),
             'smtp_port.required' => trans('message.err_smtp_port_req'),
             'smtp_secure.required' => trans('message.err_smtp_secure_req'),
+            'copyright_text.required' => trans('message.err_copyright_req'),
+            'company_logo.mimes' => trans('message.err_img_mime_req'),
+            'company_logo.max' => trans('message.err_img_size_req'),
+            'company_favicon.mimes' => trans('message.err_img_mime_req'),
+            'company_favicon.max' => trans('message.err_img_size_req'),
         ]);
 
         if($validator->fails()){
@@ -401,15 +428,154 @@ class ManageApiController extends Controller {
             echo json_encode($array, JSON_UNESCAPED_UNICODE);exit;
         }
 
-        $settingArr = ['maintenance_status', 'maintenance_message', 'smtp_host', 'smtp_user', 'smtp_pass', 'smtp_port', 'smtp_secure'];
+        if($request->file('company_logo') == '') {
+            $filename = $this->system_config['company_logo'];
+        }else{
+            $company_logo_file = $request->file('company_logo');
+            
+            $allowed_type_arr = array('jpeg', 'png','jpg');
+           
+            if (!in_array($company_logo_file->getClientOriginalExtension(), $allowed_type_arr)) {
+                $array['status'] = false;
+                $array['title']  = 'Errors!';
+                $array['message'] = trans('File type not valid !');
+                echo json_encode($array,JSON_UNESCAPED_UNICODE);
+                exit;
+            }
 
+            if ($company_logo_file->getClientSize() > 2000000) {
+                $array['status'] = false;
+                $array['title'] = 'Error!';
+                $array['message'] = trans('Image size exceeds 2MB !');
+                echo json_encode($array,JSON_UNESCAPED_UNICODE);
+                exit;
+            }
+            
+            if (file_exists(substr(base_path(), 0, strrpos(base_path(), '/')) . DIRECTORY_SEPARATOR . 'uploads' . DIRECTORY_SEPARATOR . 'company_logo' .   DIRECTORY_SEPARATOR . $this->system_config['company_logo'])) {
+                @unlink(substr(base_path(), 0, strrpos(base_path(), '/')) . DIRECTORY_SEPARATOR . 'uploads' . DIRECTORY_SEPARATOR . 'company_logo' .   DIRECTORY_SEPARATOR . $this->system_config['company_logo']);
+            }
+            
+            foreach ($this->company_img_size_array as $key => $val) {
+                
+                if (substr(base_path(), 0, strrpos(base_path(), '/')) . DIRECTORY_SEPARATOR . 'uploads' . DIRECTORY_SEPARATOR . 'company_logo/thumb' . DIRECTORY_SEPARATOR . $key . 'x' . $val . '_' . $this->system_config['company_logo']) {
+                    @unlink(substr(base_path(), 0, strrpos(base_path(), '/')) . DIRECTORY_SEPARATOR . 'uploads' . DIRECTORY_SEPARATOR . 'company_logo/thumb' . DIRECTORY_SEPARATOR . $key . 'x' . $val . '_' . $this->system_config['company_logo']);
+                }
+            }
+
+            $destinationPath = substr(base_path(), 0, strrpos(base_path(), '/')) . DIRECTORY_SEPARATOR . 'uploads' . DIRECTORY_SEPARATOR . 'company_logo' . DIRECTORY_SEPARATOR;
+            
+            $destinationPathThumb = $destinationPath . 'thumb/';
+
+            $ext = $company_logo_file->getClientOriginalExtension();
+            
+            $unique = $this->GenerateUniqueFilePrefix();
+            $filename =  $unique . '_' . preg_replace("/\s+/", "_", "logo") . '.' . $ext; 
+            
+            // Upload the original
+            $original = $company_logo_file->move($destinationPath, $filename);
+            
+            // Create a thumb sized from the original and save to the thumb path
+
+            foreach ($this->company_img_size_array as $key => $val) {
+                
+                $real_path = $original->getRealPath(); 
+                list($width_orig, $height_orig, $image_type) = getimagesize($real_path);				                                                
+                                                    
+                if ($width_orig != $key || $height_orig != $val) {  
+                    
+                    $oc_image = new OC_Image;                                                                                                                                                               
+                    $oc_image::initialize($real_path);     
+                    $oc_image::resize($key, $val);
+                    $oc_image::save($destinationPathThumb . $key . "x" . $val . "_" . $filename);
+                                                                    
+                    
+                } else {
+                    copy($real_path, $destinationPathThumb . $key . "x" . $val . "_" . $filename);
+                }                 
+            }                  
+        }
+        $settings_data = ['lp_settings_value' => $filename];
+        $company_logo_update = DB::table('lp_settings')->where('lp_settings_name', 'company_logo')->update($settings_data);
+
+        if($request->file('company_favicon') == '') {
+            $filename = $this->system_config['company_favicon'];
+        }else{
+            $company_favicon_file = $request->file('company_favicon');
+            
+            $allowed_type_arr = array('jpeg', 'png','jpg');
+           
+            if (!in_array($company_favicon_file->getClientOriginalExtension(), $allowed_type_arr)) {
+                $array['status'] = false;
+                $array['title']  = 'Errors!';
+                $array['message'] = trans('File type not valid !');
+                echo json_encode($array,JSON_UNESCAPED_UNICODE);
+                exit;
+            }
+
+            if ($company_favicon_file->getClientSize() > 2000000) {
+                $array['status'] = false;
+                $array['title'] = 'Error!';
+                $array['message'] = trans('Image size exceeds 2MB !');
+                echo json_encode($array,JSON_UNESCAPED_UNICODE);
+                exit;
+            }
+            
+            if (file_exists(substr(base_path(), 0, strrpos(base_path(), '/')) . DIRECTORY_SEPARATOR . 'uploads' . DIRECTORY_SEPARATOR . 'company_favicon' .   DIRECTORY_SEPARATOR . $this->system_config['company_favicon'])) {
+                @unlink(substr(base_path(), 0, strrpos(base_path(), '/')) . DIRECTORY_SEPARATOR . 'uploads' . DIRECTORY_SEPARATOR . 'company_favicon' .   DIRECTORY_SEPARATOR . $this->system_config['company_favicon']);
+            }
+            
+            foreach ($this->company_favicon_img_size_array as $key => $val) {
+                
+                if (substr(base_path(), 0, strrpos(base_path(), '/')) . DIRECTORY_SEPARATOR . 'uploads' . DIRECTORY_SEPARATOR . 'company_favicon/thumb' . DIRECTORY_SEPARATOR . $key . 'x' . $val . '_' . $this->system_config['company_favicon']) {
+                    @unlink(substr(base_path(), 0, strrpos(base_path(), '/')) . DIRECTORY_SEPARATOR . 'uploads' . DIRECTORY_SEPARATOR . 'company_favicon/thumb' . DIRECTORY_SEPARATOR . $key . 'x' . $val . '_' . $this->system_config['company_favicon']);
+                }
+            }
+
+            $destinationPath = substr(base_path(), 0, strrpos(base_path(), '/')) . DIRECTORY_SEPARATOR . 'uploads' . DIRECTORY_SEPARATOR . 'company_favicon' . DIRECTORY_SEPARATOR;
+            
+            $destinationPathThumb = $destinationPath . 'thumb/';
+            
+            $ext = $company_favicon_file->getClientOriginalExtension();
+            
+            $unique = $this->GenerateUniqueFilePrefix();
+            $filename =  $unique . '_' . preg_replace("/\s+/", "_", "favicon") . '.' . $ext; 
+            
+            // Upload the original
+            $original = $company_favicon_file->move($destinationPath, $filename);
+            
+            // Create a thumb sized from the original and save to the thumb path
+
+            foreach ($this->company_favicon_img_size_array as $key => $val) {
+                
+                $real_path = $original->getRealPath(); 
+                list($width_orig, $height_orig, $image_type) = getimagesize($real_path);				                                                
+                                                    
+                if ($width_orig != $key || $height_orig != $val) {  
+                    
+                    $oc_image = new OC_Image;                                                                                                                                                               
+                    $oc_image::initialize($real_path);     
+                    $oc_image::resize($key, $val);
+                    $oc_image::save($destinationPathThumb . $key . "x" . $val . "_" . $filename);
+                                                                    
+                    
+                } else {
+                    copy($real_path, $destinationPathThumb . $key . "x" . $val . "_" . $filename);
+                }                 
+            }                  
+        }
+        $settings_data = ['lp_settings_value' => $filename];
+        $company_favicon_update = DB::table('lp_settings')->where('lp_settings_name', 'company_favicon')->update($settings_data);
+
+
+        $settingArr = ['maintenance_status', 'maintenance_message', 'smtp_host', 'smtp_user', 'smtp_pass', 'smtp_port', 'smtp_secure', 'copyright_text'];
         for ($i = 0; $i < count($settingArr); $i++) {
             $settings_data = array('lp_settings_value' => $request->input($settingArr[$i]));
-
+            
             $other_setting_update= DB::table('lp_settings')->where('lp_settings_name', $settingArr[$i])->update($settings_data);
             
         }
-
+        
+        
         $array['status'] = true;
         $array['title'] = 'Success.!';
         $array['message'] = trans('message.text_setting_succ_update');
@@ -1123,6 +1289,14 @@ class ManageApiController extends Controller {
         }
     }
 
+     public function defualtLogin()
+    {
+        $data['admin'] = DB::table('lp_admin')->select('id','default_login')->get();
+       
+        echo json_encode($data, JSON_UNESCAPED_UNICODE);exit;
+
+    }
+
     public function authenticate(Request $request)
     {   
        
@@ -1145,13 +1319,22 @@ class ManageApiController extends Controller {
         if ($admin) {
             if ($admin->password == md5($request->input('password'))) {
                 
-                $admin_data = DB::table('lp_admin')->where('id', $admin->id)->first();
+                // $admin_data = DB::table('lp_admin')->where('id', $admin->id)->first();
 
-                $array['status'] = true;
-                $array['title'] = 'Login successfull';
-                $array['message'] = $admin_data;
-                echo json_encode($array, JSON_UNESCAPED_UNICODE);
-                exit;
+                if ($admin->default_login == '0') {
+                    $admin_data = DB::table('lp_admin')->where('id', $admin->id)->first();
+                    
+                    $array['status'] = true;
+                    $array['title'] = 'Login Successfull';
+                    $array['message'] = $admin_data;
+                    echo json_encode($array, JSON_UNESCAPED_UNICODE);
+                    exit;
+                }
+                // $array['status'] = true;
+                // $array['title'] = 'Login successfull';
+                // $array['message'] = $admin_data;
+                // echo json_encode($array, JSON_UNESCAPED_UNICODE);
+                // exit;
             }else {
                 $array['status'] = false;
                 $array['title'] = 'Login Failed';

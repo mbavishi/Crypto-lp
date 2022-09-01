@@ -12,6 +12,7 @@ import {
     PassUpdateReducer,
     ProfileUpdateReducer,
     ResetPsdReducer,
+    SettingDataReducer,
     SettingReducer,
     MemberDetailsReducer,
     UpdateCurrPairReducer, UpdateCurrReducer, UpdatePsdReducer, UpdateSettingReducer
@@ -33,6 +34,7 @@ const rootReducer = combineReducers({
     addCurrPair: AddCurrPairReducer,
     updateCurrPair: UpdateCurrPairReducer,
     curr: CurrReducer,
+    SettingData: SettingDataReducer,
     setting: SettingReducer,
     updateSetting: UpdateSettingReducer,
     deleteCurr: DeleteCurrReducer,

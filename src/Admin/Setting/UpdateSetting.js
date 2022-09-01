@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import {
-  GetSettingData,
+  SettingData,
   UpdateSettingData,
 } from "../../Redux/Action/AdminData";
 import { useNavigate } from "react-router-dom";
@@ -22,34 +22,28 @@ const UpdateSetting = ({ dispatch, res }) => {
     smtp_pass: "",
     smtp_port: "",
     smtp_secure: "",
-    copyright: ""
+    copyright_text: ""
   });
 
   //get the setting data on page load
   useEffect(() => {
-    dispatch(GetSettingData());
+    dispatch(SettingData());
   }, [dispatch]);
+  const data = res.data;
 
   useEffect(() => {
-    res.data.config_table &&
-      setSetting({
-        maintenance_status: res.data.config_table[8].lp_settings_value,
-        maintenance_message: res.data.config_table[9].lp_settings_value,
-        smtp_host: res.data.config_table[1].lp_settings_value,
-        smtp_user: res.data.config_table[3].lp_settings_value,
-        smtp_pass: res.data.config_table[4].lp_settings_value,
-        smtp_port: res.data.config_table[2].lp_settings_value,
-        smtp_secure: res.data.config_table[5].lp_settings_value,
-        copyright_text: res.data.config_table[10].lp_settings_value
-      })
-  }, [res]);
-
-  // useEffect(() => {
-  //   !res.loading &&
-  //     res.data.config_table.map((data) => {
-  //       setting[data.lp_settings_name] = data.lp_settings_value;
-  //     });
-  // }, [res, dispatch]);
+    setSetting({
+      ...setting,
+      maintenance_status: data.maintenance_status,
+      maintenance_message: data.maintenance_message,
+      smtp_host: data.smtp_host,
+      smtp_user: data.smtp_user,
+      smtp_pass: data.smtp_pass,
+      smtp_port: data.smtp_port,
+      smtp_secure: data.smtp_secure,
+      copyright_text: data.copyright_text
+    })
+  }, [data]);
 
   //chnage the data of setting
   const handleChange = (e) => {
@@ -84,9 +78,11 @@ const UpdateSetting = ({ dispatch, res }) => {
               <div className="row adminform-row">
                 <form method="post">
                   <div className="row">
+                    {/* setting */}
                     <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
                       <h3 className="breadcrumb-title">{t("text_setting")}</h3>
                     </div>
+                    {/* smtp setting */}
                     <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 pt-4">
                       <h5>{t("text_smtp_settings")}</h5>
                     </div>
@@ -317,7 +313,7 @@ const UpdateSetting = ({ dispatch, res }) => {
 
 // redux connect
 const mapStateToProps = (state) => ({
-  res: state.setting,
+  res: state.SettingData,
 });
 
 export default connect(mapStateToProps)(UpdateSetting);

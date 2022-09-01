@@ -1,14 +1,15 @@
 import { React, useEffect } from "react";
-import { GetSettingData } from "../../Redux/Action/AdminData";
+import { SettingData } from "../../Redux/Action/AdminData";
 import { NavLink } from "react-router-dom";
 import { connect } from "react-redux";
 
 const UserTheme = ({ dispatch, res, children }) => {
   useEffect(() => {
-    dispatch(GetSettingData());
+    dispatch(SettingData());
   }, [dispatch]);
   const data = res.data;
-  const logo = data.config_table && data.config_table[11].lp_settings_value;
+  console.log(data);
+  const logo = data.company_logo;
 
   return (
     <>
@@ -32,7 +33,7 @@ const UserTheme = ({ dispatch, res, children }) => {
       </section>
       {/* main-part */}
       <div className="row">
-        <div className="col-md-10 mx-auto mt-3">
+        <div className="col-md-10 mx-auto">
           {children}
         </div>
       </div>
@@ -42,7 +43,7 @@ const UserTheme = ({ dispatch, res, children }) => {
 
 // redux connect
 const mapStateToProps = (state) => ({
-  res: state.setting,
+  res: state.SettingData,
 });
 
 export default connect(mapStateToProps)(UserTheme);
