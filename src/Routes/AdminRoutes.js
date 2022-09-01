@@ -2,6 +2,7 @@ import Login from "../Admin/Login/Login";
 import Private from "../Routes/privateRoutes/adminPrivateRoutes"
 import Profile from "../Admin/profile/Profile";
 import UpdatePassword from "../Admin/Login/UpdatePassword";
+import ChangePass from "../Admin/profile/changePass";
 import Dashboard from "../Admin/dashboard/dashboard";
 import AddCurrency from "../Admin/Currency/AddCurrency";
 import EditCurrency from "../Admin/Currency/EditCurrency";
@@ -20,7 +21,8 @@ import Currency from "../Admin/Currency/currency";
 
 const AdminRoutes = [
   { path: "/admin", component: <Login /> },
-  { path: "/updatepsd", component: <Private><UpdatePassword /></Private> },
+  { path: "/updatepsd", component: <UpdatePassword /> },
+  { path: "/changepsd", component: <Private><ChangePass /></Private> },
   { path: "/profile", component: <Private><Profile /></Private> },
   { path: "/currency/add", component: <Private><AddCurrency /></Private> },
   { path: "/currency/edit/:id", component: <Private><EditCurrency /></Private> },

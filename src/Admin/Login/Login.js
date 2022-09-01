@@ -1,6 +1,7 @@
 import { React, useEffect, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { ResetPsd } from "../../Redux/Action/AdminData";
+import Footer from "../theme/footer";
 import UserTheme from "../../User/theme/userTheme";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
@@ -18,8 +19,27 @@ const Login = ({ dispatch, resetPsd, updatePsd }) => {
     username: "",
     password: "",
   });
+
+  var val = 0;
+  useEffect(() => {
+    if (val == 0) {
+      setLoginData(
+        {
+          username: "admin",
+          password: "password"
+        }
+      )
+    }
+  }, [val])
+
   // form validation
   const [state1, setState1] = useState({
+    formErrors: {},
+  });
+  const [state2, setState2] = useState({
+    formErrors: {},
+  });
+  const [state3, setState3] = useState({
     formErrors: {},
   });
   //handle reset modal
@@ -30,7 +50,7 @@ const Login = ({ dispatch, resetPsd, updatePsd }) => {
   //handle confirm otp  modal
   const [confirmShow, setConfirmShow] = useState(false);
   const handleConfirmClose = () => {
-    confirmShow(false);
+    setConfirmShow(false);
   };
   //store reset password data
   const [resetPsdData, setResetPsdData] = useState({
@@ -75,11 +95,34 @@ const Login = ({ dispatch, resetPsd, updatePsd }) => {
     return formIsValid;
   }
 
+  function handleFormValidation2() {
+    const { email } = resetPsdData;
+    let formErrors = {};
+    let formIsValid = false;
+    if (!email) {
+      formIsValid = true;
+      formErrors["emailErr"] = t("translation2:err_email_req");
+    }
+    setState2({ formErrors: formErrors });
+    return formIsValid;
+  }
+
+  function handleFormValidation3() {
+    const { otp } = resetPsdData;
+    let formErrors = {};
+    let formIsValid = false;
+    if (!otp) {
+      formIsValid = true;
+      formErrors["otpErr"] = t("translation2:err_otp_req");
+    }
+    setState3({ formErrors: formErrors });
+    return formIsValid;
+  }
+
   // function call on click of sign in button
   const handleSubmit = async (e) => {
     e.preventDefault();
     const errorValue = handleFormValidation();
-
     // handleFormValidation();
     if (!errorValue) {
       var response = await fetch("/api/adminlogin", {
@@ -103,7 +146,7 @@ const Login = ({ dispatch, resetPsd, updatePsd }) => {
   }
 
   //function call on click forgot password
-  const handleReset = (e) => {
+  const handleReset = () => {
     setShow(true);
   };
 
@@ -118,7 +161,8 @@ const Login = ({ dispatch, resetPsd, updatePsd }) => {
 
   //handle reset password otp data
   const handleResetPassword = () => {
-    dispatch(ResetPsd(resetPsdData));
+    let error = handleFormValidation2();
+    !error && dispatch(ResetPsd(resetPsdData));
   };
   var otpResetData = resetPsd.data;
 
@@ -140,16 +184,19 @@ const Login = ({ dispatch, resetPsd, updatePsd }) => {
       ...loginData,
       [name]: value,
     });
+    console.log(otpData);
   };
-
 
   //compare the otp
   const handleCompareOtp = () => {
-    if (otpData.otp === otpResetData.otp) {
-      history("/updatepsd");
-    } else {
-      handleConfirmClose();
-      toast.error("please enter valid otp");
+    let error = handleFormValidation3()
+    if (!error) {
+      if (otpData.otp === otpResetData.otp) {
+        history("/updatepsd");
+      } else {
+        handleConfirmClose();
+        toast.error("please enter valid otp");
+      }
     }
   };
 
@@ -158,77 +205,99 @@ const Login = ({ dispatch, resetPsd, updatePsd }) => {
       <Title props={t("text_login")} />
       {/* modal reset password */}
       <Modal show={show} onHide={handleClose} animation={true}>
-        <Modal.Header>
-          <h6 className="text-dark">Reset password</h6>
+        <Modal.Header className="text-center">
+          <h3>{t("text_reset_password")}</h3>
         </Modal.Header>
         <Modal.Body>
           <div className="row">
             <div className="col-12">
               <span>
-                <label className="text-dark">
-                  Enter email address
+                <label className="form-label1">
+                  {t("text_enter_mail")}
                   <span className="required" aria-required="true">
                     &nbsp;*&nbsp;
                   </span>
-                  -
                 </label>
                 <input
                   name="email"
                   type="text"
-                  className="form-control b-bottom m-0"
+                  className="form-control theme-input text-dark"
                   placeholder="email address"
                   onChange={handleEmail}
                   value={resetPsdData.email}
                 />
+                <label
+                  htmlFor="email"
+                  generated="true"
+                  className={
+                    "error " +
+                    (state2.formErrors.emailErr
+                      ? " d-block"
+                      : "d-none")
+                  }
+                >
+                  {state2.formErrors.emailErr}
+                </label>
               </span>
             </div>
           </div>
-          <div id="recaptcha-container" />
+          {/* <div id="recaptcha-container" /> */}
         </Modal.Body>
         <Modal.Footer>
           <Button className="btn-add" onClick={handleClose}>
             {t("btn_close")}
           </Button>
           <Button className="btn-add" onClick={handleResetPassword}>
-            send otp
+            {t("text_send_otp")}
           </Button>
         </Modal.Footer>
       </Modal>
       {/* modal otp */}
       <Modal show={confirmShow} onHide={handleClose} animation={true}>
         <Modal.Header>
-          <h6 className="text-dark">Otp</h6>
+          <h6 className="text-dark">{t("text_otp")}</h6>
         </Modal.Header>
         <Modal.Body>
           <div className="row">
             <div className="col-12">
               <span>
                 <label className="text-dark">
-                  Enter otp
+                  {t("text_Enter_otp")}
                   <span className="required" aria-required="true">
                     &nbsp;*&nbsp;
                   </span>
-                  -
                 </label>
                 <input
                   name="otp"
                   type="text"
-                  className="form-control b-bottom m-0"
+                  className="form-control theme-input text-dark"
                   placeholder="enter otp"
                   onChange={handleOtp}
                   value={otpData.otp}
                 />
+                <label
+                  htmlFor="otp"
+                  generated="true"
+                  className={
+                    "error " +
+                    (state3.formErrors.otpErr
+                      ? " d-block"
+                      : "d-none")
+                  }
+                >
+                  {state3.formErrors.otpErr}
+                </label>
               </span>
             </div>
           </div>
           <div id="recaptcha-container" />
         </Modal.Body>
         <Modal.Footer>
-          <Button className="btn-lightgray" onClick={handleConfirmClose}>
+          <Button className="btn-add" onClick={handleConfirmClose}>
             {t("btn_close")}
           </Button>
-          <Button className="btn-lightpink" onClick={handleCompareOtp}>
-            verify
+          <Button className="btn-add" onClick={handleCompareOtp}>
+            {t("text_verify")}
           </Button>
         </Modal.Footer>
       </Modal>
@@ -251,7 +320,7 @@ const Login = ({ dispatch, resetPsd, updatePsd }) => {
                       <input
                         type="text"
                         className="form-control theme-input pb-2"
-                        placeholder="username"
+                        placeholder="Username"
                         value={loginData.username}
                         name="username"
                         onChange={handleLoginData}
@@ -280,7 +349,7 @@ const Login = ({ dispatch, resetPsd, updatePsd }) => {
                       <input
                         type="password"
                         className="form-control theme-input pb-2"
-                        placeholder="password"
+                        placeholder="Password"
                         value={loginData.password}
                         name="password"
                         onChange={handleLoginData}
@@ -326,12 +395,7 @@ const Login = ({ dispatch, resetPsd, updatePsd }) => {
                 </div>
               </div>
             </div>
-            {/* copyright text */}
-            <div className="row">
-              <div className="col-md-12 copyright text-center mt-0">
-                <p className="mt-4">{t("text_copyright")}</p>
-              </div>
-            </div>
+            <Footer />
           </div>
         </section>
       </UserTheme>

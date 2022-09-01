@@ -5,6 +5,7 @@
     "err_last_name_req": "please enter lastname",
     "err_password_req": "please enter password",
     "err_email_req": "please enter email",
+    "err_otp_req": "please enter OTP",
     "err_old_password_req": "please enter old password",
     "err_new_password_req": "please enter new password",
     "err_c_passowrd_req": "Please enter confirm password",

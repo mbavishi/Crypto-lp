@@ -62,6 +62,13 @@ const Header = () => {
                   {t("text_profile")}
                 </NavLink>
               </li>
+              {/* change password */}
+              <li>
+                <NavLink to="/changepsd">
+                  <i className="feather icon-settings"></i>
+                  {t("text_change_password")}
+                </NavLink>
+              </li>
               {/* logout */}
               <li>
                 <div onClick={AdminLogout} className="pointer logout">

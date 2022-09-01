@@ -175,7 +175,7 @@ body {
 #crypto {
     height: 100%;
     background-color: var(--primary-color);
-    background-image: url('../images/bg_image.png');
+    background-image: url('../images/bg_img.png');
     background-size: cover !important;
     background-repeat: no-repeat;
 }
@@ -489,6 +489,12 @@ form a {
 
 .form-label {
     font-family: 'heebo-thin' !important;
+    color: var(--white-color) !important;
+}
+
+.form-label1 {
+    font-family: 'heebo-regular' !important;
+    color: #000000;
 }
 
 .rate input {
@@ -1525,8 +1531,16 @@ th, td {
 }
 
 .breadcrumb-title {
-    font-size: 20px;
+    font-size: 24px;
     color: var(--white-color);
+    font-family: 'heebo-thin';
+    /* padding-bottom: 10px; */
+    /* border-bottom: 1px solid var(--orange-color); */
+}
+
+h5 {
+    font-size: 18px;
+    color: var(--orange-color);
     font-family: 'heebo-thin';
 }
 
@@ -2453,7 +2467,7 @@ table.dataTable thead>tr>th.sorting:after {
     #login-page {
         height: 100%;
         background-color: var(--primary-color);
-        background-image: url('../images/bg_image.png');
+        background-image: url('../images/bg_img.png');
         background-size: cover !important;
         justify-content: center;
         background-repeat: no-repeat;
@@ -2479,7 +2493,7 @@ table.dataTable thead>tr>th.sorting:after {
     #crypto {
         height: 100%;
         background-color: var(--primary-color);
-        background-image: url('../images/bg_image.png');
+        background-image: url('../images/bg_img.png');
         background-size: cover !important;
         background-repeat: no-repeat;
     }

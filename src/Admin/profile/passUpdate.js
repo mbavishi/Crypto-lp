@@ -1,9 +1,11 @@
 import { React, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { toast } from "react-toastify";
 import { t } from 'i18next';
 
 const PassUpdate = () => {
     const user = JSON.parse(sessionStorage.getItem("UserData"));
+    const navigate = useNavigate()
 
     const [psdData, setPsdData] = useState({
         old_password: "",
@@ -172,6 +174,13 @@ const PassUpdate = () => {
                                 onClick={handleSubmit}
                             >
                                 {t("text_update")}
+                            </button>
+                            <button
+                                onClick={() => navigate(-1)}
+                                className="btn btn-primary cancel-btn ms-3"
+                                type="button"
+                            >
+                                {t("text_cancel")}
                             </button>
                         </div>
                     </form>
