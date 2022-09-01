@@ -10,7 +10,7 @@ import { connect } from "react-redux";
 import Footer from "../theme/footer";
 import { t } from "i18next";
 
-const Login = ({ dispatch, resetPsd, updatePsd, resDefaultLogin }) => {
+const Login = ({ dispatch, resetPsd, resDefaultLogin }) => {
   const history = useNavigate();
   const location = useLocation();
 
