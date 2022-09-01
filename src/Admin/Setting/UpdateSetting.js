@@ -96,7 +96,6 @@ const UpdateSetting = ({ dispatch, res }) => {
                     <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
                       <h3 className="breadcrumb-title">{t("text_setting")}</h3>
                     </div>
-                    {/* smtp setting */}
                     <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 pt-4">
                       <h5>{t("text_smtp_settings")}</h5>
                     </div>
